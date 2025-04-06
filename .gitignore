@@ -1,0 +1,25 @@
+# Ignore build and debug directories
+bin/
+obj/
+
+# Ignore user-specific files
+*.user
+*.suo
+
+# Ignore temporary files
+*.tmp
+*.log
+
+# Ignore compiled files
+*.dll
+*.exe
+*.pdb
+
+# Ignore F# specific files
+*.fsproj.user
+*.fsproj.vspscc
+*.fsproj.vssscc
+
+# Ignore other system files
+.DS_Store
+Thumbs.db

@@ -1,0 +1,64 @@
+
+# 問題1: 会社設立に関する問題
+[[questions]]
+id = "q1"
+name = "設立取締役の選任方法"
+category = "会社法"
+description = "発起設立と募集設立における取締役選任の決定方法を問う問題。"
+text = "発起設立における設立取締役の選任は、定款に別段の定めがない場合、{loc1}の同意により決定し、募集設立の場合は{loc2}にて決定する."
+explanation = "発起設立では発起人が設立の主導権を持ち、議決権の過半数で迅速に決定されます。一方、募集設立では株主が関与するため、創立総会で決定されるのが一般的です。"
+
+[[questions.locations]]
+location = "loc1"
+correct_answer = "発起人の議決権の過半数"
+wrong_options = [
+    "発起人の全員",
+    "発起人の議決数の2/3以上"
+]
+
+[[questions.locations]]
+location = "loc2"
+correct_answer = "創立総会"
+wrong_options = [
+    "取締役会の設置にかかわらず株主総会",
+    "取締役会設置会社の場合は取締役会、取締役会非設置会社の場合は株主総会"
+]
+
+[[questions]]
+id = "q2"
+name = ""
+category = ""
+description = ""
+text = "発起人が複数いる場合、発起設立の場合には{loc1}、募集設立場合、{loc2}。"
+explanation = ""
+
+[[questions.locations]]
+location = "loc1"
+correct_answer = "発起人の全員が設立時発行株式を引き受けなければならなく"
+wrong_options = [
+    "発起人の1人以上が設立時発行株式を引き受ければよく",
+]
+
+[[questions.locations]]
+location = "loc2"
+correct_answer = "発起人の全員が設立時発行株式を引き受けなければならない"
+wrong_options = [
+    "発起人の一人以上が設立時発行株式を引き受ければ良い",
+]
+
+
+[[questions]]
+id = "q3"
+name = ""
+category = ""
+description = ""
+text = "公開会社ではない株式会社において、株式会社を設立するにあたり、{loc1:定款に商号を記載する必要がある}。"
+explanation = ""
+
+[[questions.locations]]
+location = "loc1"
+wrong_options = [
+    "定款に商号を記載する必要はない",
+]
+
+# プログラムのデータ定義の仕様変更をしたい。questions.tomlにおいて、今はq1,q2のようなデータを前提として作成しているが、作門を楽にするためq3のように定義したい。これに合わせてProgram.fsを修正して。
