@@ -52,3 +52,25 @@ location = "loc1"
 wrong_options = [
     "定款に商号を記載する必要はない",
 ]
+
+[[questions]]
+id = "20250407-1"
+name = ""
+category = ""
+description = ""
+text = "展示会で発表した意匠について、{loc1:新規性喪失の例外}の規定を用いれば、意匠登録出願できる場合がある。その場合、期間は展示会に出品した日が起算日となり、その日から{loc2:1年}以内に登録出願する必要がある。"
+explanation = ""
+
+[[questions.locations]]
+location = "loc1"
+wrong_options = [
+    "国内優先権",
+]
+[[questions.locations]]
+location = "loc2"
+wrong_options = [
+    "2年",
+    "6カ月",
+    "30日",
+    "2週間",
+]
