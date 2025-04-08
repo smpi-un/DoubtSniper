@@ -1,0 +1,48 @@
+[[questions]]
+id = "fukeihou1"
+name = ""
+category = ""
+description = ""
+text = "商品形態模倣行為は、{loc1:日本国内}において最初に販売された日から起算して{loc2:3年}を経過した場合にあてはまらなくなる。"
+explanation = ""
+[[questions.locations]]
+location = "loc1"
+wrong_options = [
+    "海外",
+]
+[[questions.locations]]
+location = "loc2"
+wrong_options = [
+    "6ヶ月",
+    "1年",
+    "2年",
+    "4年",
+]
+
+[[questions]]
+id = "fukeihou2"
+name = ""
+category = ""
+description = ""
+text = "不正競争防止法における営業秘密になるには、{loc1:秘密管理性}, {loc2:非公知性}, {loc3:有用性}の3つの要件を満たすことが必要である。"
+explanation = ""
+[[questions.locations]]
+location = "loc1"
+wrong_options = [ "進歩性", ]
+[[questions.locations]]
+location = "loc2"
+wrong_options = [ "新規性", ]
+[[questions.locations]]
+location = "loc3"
+wrong_options = [ "独自性", ]
+
+[[questions]]
+id = "fukeihou3"
+name = ""
+category = ""
+description = ""
+text = "商標権の行使には、自社商標と相手商標が{loc1:類似}と認められれば侵害となる。"
+explanation = ""
+[[questions.locations]]
+location = "loc1"
+wrong_options = [ "需要者に混同を生じさせる", ]

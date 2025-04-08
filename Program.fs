@@ -5,7 +5,17 @@ open Tomlyn.Model
 open System.Text.RegularExpressions
 
 // モデル定義
-type Location = { index: int; placeholder: string; wrong_options: string list; correctAnswer: string }
+type Location = {
+    index: int
+    placeholder: string
+    wrong_options: string list
+    correctAnswer: string
+}
+
+
+type GameType =
+    | SelectDoubt
+    | DoubtOrNoDoubts
 
 type Question = {
     id: string
@@ -43,7 +53,7 @@ let rec withIndex (start: int) (list: 'a list) : ('a * int) list =
 /// </summary>
 /// <param name="filePath">The path to the TOML file.</param>
 /// <returns>A list of questions parsed from the file.</returns>
-let parseQuestions (filePath: string) : Question list =
+let parseQuestions (toml: string) : Question list =
     /// <summary>
     /// Extracts the correct answer for a given location ID from the text.
     /// </summary>
@@ -59,7 +69,6 @@ let parseQuestions (filePath: string) : Question list =
         |> Seq.mapi (fun idx m -> m.Groups.["correct"].Value)
         |> Seq.head
 
-    let toml = File.ReadAllText(filePath)
     let model = Toml.Parse(toml).ToModel()
     let questions = model.["questions"] :?> TomlTableArray
 
@@ -101,7 +110,25 @@ let parseQuestions (filePath: string) : Question list =
 /// <param name="locations">The list of locations with answers.</param>
 /// <param name="answer">The answer to use for replacement.</param>
 /// <returns>The text with placeholders replaced by answers.</returns>
-let replacePlaceholders (text: string) (locations: Location list) (answer: Answer) : string =
+let replacePlaceholdersForDoubtOrNoDoubts (text: string) (locations: Location list) (answer: Answer) : string =
+    locations
+    |> List.fold (fun acc loc ->
+        let answer_text =
+          match answer with
+          | WrongText ans -> if loc.placeholder <> ans.location then loc.correctAnswer else ans.replaceText
+          | CorrectText -> loc.correctAnswer
+        let pattern = @"\{" + loc.placeholder + @":([^}]+)\}"
+        let replacement = answer_text
+        Regex.Replace(acc, pattern, replacement)
+    ) text
+/// <summary>
+/// Replaces placeholders in a text with the corresponding answers.
+/// </summary>
+/// <param name="text">The text containing placeholders.</param>
+/// <param name="locations">The list of locations with answers.</param>
+/// <param name="answer">The answer to use for replacement.</param>
+/// <returns>The text with placeholders replaced by answers.</returns>
+let replacePlaceholdersForSelectDoubt (text: string) (locations: Location list) (answer: Answer) : string =
     locations
     |> List.fold (fun acc loc ->
         let answer_text =
@@ -118,8 +145,7 @@ let replacePlaceholders (text: string) (locations: Location list) (answer: Answe
 /// </summary>
 /// <param name="questions">The list of questions to choose from.</param>
 /// <returns>A randomly selected question.</returns>
-let getRandomQuestion (questions: Question list) : Question =
-    let rnd = Random()
+let getRandomQuestion (questions: Question list) (rnd: Random) : Question =
     questions.[rnd.Next(questions.Length)]
 
 /// <summary>
@@ -127,9 +153,8 @@ let getRandomQuestion (questions: Question list) : Question =
 /// </summary>
 /// <param name="question">The question to generate an answer for.</param>
 /// <returns>A random answer, either correct or incorrect.</returns>
-let getRandomAnswer (question: Question) : Answer =
-    let rnd = Random()
-    let locationIndex = rnd.Next(0, question.locations.Length)
+let getRandomAnswer (question: Question) (rnd: Random) : Answer =
+    let locationIndex = rnd.Next(0, question.locations.Length + 1)
     if locationIndex = 0 then
         CorrectText
     else
@@ -150,13 +175,41 @@ let getQuestionById (id: string) (questions: Question list) : Question option =
 /// Asks a question and processes the user's answer.
 /// </summary>
 /// <param name="question">The question to ask.</param>
-let askQuestion (question: Question) : unit =
+let askQuestion2 (question: Question) (answer: Answer) : bool =
     printfn "Category: %s" question.category
     printfn "Name: %s" question.name
     printfn "Description: %s" question.description
 
-    let answer = getRandomAnswer question
-    let finalText = replacePlaceholders question.text question.locations answer
+    let finalText = replacePlaceholdersForDoubtOrNoDoubts question.text question.locations answer
+    printfn "Text: %s" finalText
+
+    printf "Enter the number of the incorrect location: "
+    let input = Console.ReadLine()
+
+    // printf "Answer: %s" answer.location
+
+    let isCorrect =
+        match answer with 
+        | WrongText _ -> input.Trim() <> ""
+        | CorrectText -> input.Trim() = ""
+
+    printfn (if isCorrect then "✔Correct!" else "✗Incorrect.")
+
+    match answer with
+    | WrongText ans -> printfn "Answer: (%s)%s" (ans.locationIndex.ToString()) ans.correctAnswer
+    | CorrectText -> printfn "Answer: No incorrect location"
+    printfn "%s" question.explanation
+    isCorrect
+/// <summary>
+/// Asks a question and processes the user's answer.
+/// </summary>
+/// <param name="question">The question to ask.</param>
+let askQuestion (question: Question) (answer: Answer) : bool =
+    printfn "Category: %s" question.category
+    printfn "Name: %s" question.name
+    printfn "Description: %s" question.description
+
+    let finalText = replacePlaceholdersForSelectDoubt question.text question.locations answer
     printfn "Text: %s" finalText
 
     printf "Enter the number of the incorrect location: "
@@ -170,16 +223,25 @@ let askQuestion (question: Question) : unit =
       | CorrectText -> "0"
     let isCorrect = (input.Trim()) = answerIndex
 
-    if isCorrect then
-        printfn "✔Correct!"
-    else
-        printfn "✗Incorrect."
+    printfn (if isCorrect then "✔Correct!" else "✗Incorrect.")
+
     match answer with
     | WrongText ans -> printfn "Answer: (%s)%s" (ans.locationIndex.ToString()) ans.correctAnswer
     | CorrectText -> printfn "Answer: No incorrect location"
     printfn "%s" question.explanation
+    isCorrect
 
-// Elm風 main：状態初期化＋副作用まとめ
+let listupToml dirPath =
+    let files = Directory.GetFiles(dirPath, "*.toml", SearchOption.AllDirectories)
+    files |> Seq.toList |> List.map Path.GetFullPath
+
+let shuffle list =
+    let rnd = System.Random()
+    list 
+    |> List.map (fun x -> (rnd.Next(), x)) // 各要素にランダムな数値を付ける
+    |> List.sortBy fst                     // ランダム値でソート
+    |> List.map snd                        // 元の要素だけを取り出す
+
 /// <summary>
 /// The main entry point for the application.
 /// </summary>
@@ -187,13 +249,35 @@ let askQuestion (question: Question) : unit =
 /// <returns>An integer exit code.</returns>
 [<EntryPoint>]
 let main argv =
-    let questions = parseQuestions "data/questions.toml"
+    // let filePaths = ["data/questions.toml"; "data/不正競争防止法.toml"]
+    let dirPath = "data"
+    let gameType = DoubtOrNoDoubts
+    let filePaths = listupToml dirPath
+    let tomls = filePaths |> List.map File.ReadAllText
+    let questions_list = tomls |> List.map parseQuestions
 
-    let question =
-        match argv |> Array.tryHead with
-        | Some id -> getQuestionById id questions |> Option.defaultWith (fun () ->
-                        printfn "Question ID not found. Selecting random question."; getRandomQuestion questions)
-        | None -> getRandomQuestion questions
+    let questions = questions_list |> List.concat
+    let rnd = Random()
+    let answers = questions |> List.map (fun q -> getRandomAnswer q rnd)
 
-    askQuestion question
-    0
+    let num = 10
+
+    match gameType with
+    | SelectDoubt ->
+        let correctNum = List.zip questions answers
+                         |> shuffle
+                         |> List.truncate num
+                         |> List.map (fun (q, a) -> askQuestion q a)
+                         |> List.filter id
+                         |> List.length
+        printfn "Correct: %d/%d" correctNum (questions.Length)
+        0
+    | DoubtOrNoDoubts ->
+        let correctNum = List.zip questions answers
+                         |> shuffle
+                         |> List.truncate num
+                         |> List.map (fun (q, a) -> askQuestion2 q a)
+                         |> List.filter id
+                         |> List.length
+        printfn "Correct: %d/%d" correctNum (questions.Length)
+        0
