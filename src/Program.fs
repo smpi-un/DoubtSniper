@@ -3,6 +3,8 @@ open System.IO
 open Tomlyn
 open Tomlyn.Model
 open System.Text.RegularExpressions
+open DoubtSnaiper
+
 
 // モデル定義
 type Location = {
@@ -94,12 +96,16 @@ let parseQuestions (toml: string) : Question list =
     |> Seq.map (fun q ->
         {
             id = q.["id"].ToString()
-            name = q.["name"].ToString()
-            category = q.["category"].ToString()
-            description = q.["description"].ToString()
+            name = if q.ContainsKey("name") then q.["name"].ToString() else ""
+            category = if q.ContainsKey("category") then q.["category"].ToString() else ""
+            description = if q.ContainsKey("description") then q.["description"].ToString() else ""
             text = q.["text"].ToString()
-            explanation = q.["explanation"].ToString()
-            locations = toLocationList (q.["locations"] :?> TomlTableArray) (q.["text"].ToString())
+            explanation = if q.ContainsKey("explanation") then q.["explanation"].ToString() else ""
+            locations =
+              if q.ContainsKey("locations") then
+                toLocationList (q.["locations"] :?> TomlTableArray) (q.["text"].ToString())
+              else
+                []
         })
     |> Seq.toList
 
@@ -249,8 +255,9 @@ let shuffle list =
 /// <returns>An integer exit code.</returns>
 [<EntryPoint>]
 let main argv =
+    DoubtSnaiper.main argv
     // let filePaths = ["data/questions.toml"; "data/不正競争防止法.toml"]
-    let dirPath = "data"
+    let dirPath = "data/keizai"
     let gameType = DoubtOrNoDoubts
     let filePaths = listupToml dirPath
     let tomls = filePaths |> List.map File.ReadAllText

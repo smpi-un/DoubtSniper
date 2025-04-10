@@ -1,0 +1,48 @@
+[[questions]]
+id = "q1"
+text = """
+平均費用は、{loc1:総費用曲線上の任意の点から原点に引いた直線の傾きの大きさ}で示される。
+"""
+[[questions.locations]]
+location = "loc1"
+wrong_options = [
+    "総費用曲線上の任意の点から原点に引いた直線の傾きの大きさ",
+    "総費用曲線上の任意の点の接線の傾きの大きさ"
+]
+[[questions]]
+id = "q1"
+text = """
+限界費用は、{loc1:総費用曲線上の任意の点の接線の傾きの大きさ}で示される。
+"""
+[[questions.locations]]
+location = "loc1"
+wrong_options = [
+    "総費用曲線上の任意の点から原点に引いた直線の傾きの大きさ",
+]
+
+[[questions]]
+id = "q2"
+text = """
+外部不経済が発生している場合、私的限界費用（PMC）は社会的限界費用（SMC）よりも{loc1:小さく}なる
+"""
+[[questions.locations]]
+location = "loc1"
+wrong_options = [
+    "大きく",
+]
+
+[[questions]]
+id = "q3"
+text = """
+外部不経済が存在する場合、何の規制も行わないと社会的な総余剰は{loc1:減少}する。
+"""
+[[questions.locations]]
+location = "loc1"
+wrong_options = [
+    "増加",
+]
+[[questions]]
+id = "q3"
+text = """
+コースの定理によれば、外部効果の発生に対して加害者が補償金を負担しなくとも、交渉によって最適な資源配分が実現する可能性もある。
+"""
