@@ -21,11 +21,3 @@ category = ""
 description = ""
 text = "商標権の行使には、自社商標と相手商標が{類似|需要者に混同を生じさせる}と認められれば侵害となる。"
 explanation = ""
-
-[[questions]]
-id = "new_fukeihou3"
-name = ""
-category = ""
-description = ""
-text = "商標権の行使には、自社商標と相手商標が{類似|需要者に混同を生じさせる}と認められれば侵害となる。"
-explanation = """ """

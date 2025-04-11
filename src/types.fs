@@ -5,13 +5,6 @@ open Tomlyn
 open Tomlyn.Model
 open System.Text.RegularExpressions
 
-// モデル定義
-type Location = {
-    index: int
-    placeholder: string
-    wrong_options: string list
-    correctAnswer: string
-}
 
 
 type GameType =
@@ -41,10 +34,6 @@ type Question = {
 }
     
     
-
-let listupToml dirPath =
-    let files = Directory.GetFiles(dirPath, "*.toml", SearchOption.AllDirectories)
-    files |> Seq.toList |> List.map Path.GetFullPath
 
 /// <summary>
 /// Parses a TOML file to extract a list of questions.
@@ -85,6 +74,7 @@ let getTemplate (text: string) : string list =
     let parts = Regex.Split(text, pattern) // {A|B} をカンマに置換
     
     parts |> Seq.toList
+
 /// <summary>
 /// {A|B;C} の形式を解析し、(A, [B;C]) のタプルリストを返す関数。
 /// </summary>
@@ -105,40 +95,26 @@ let getSelection (text: string) : (string * string list) list =
             |> Array.toList
         (key, options)) // (A, [B;C]) のタプルを作成
     |> Seq.toList
-let getRandomWrongAnswer (question: QuestionDef) (rnd: Random) : Answer =
-    let locationIndex = rnd.Next(0, (question.text |> getSelection |> List.length))
-    let location = question.text |> getSelection |> List.item locationIndex
-    WrongText {
-        locationIndex = locationIndex
-        replaceTextIndex = rnd.Next(location |> snd |> List.length)
-    }
 
-let getQuestionText (s: QuestionDef) (answer: Answer) =
-    match answer with
-    | CorrectText -> s.text
-    | WrongText wrongAnswer ->
-        let template = getTemplate s.text
-        let selection = getSelection s.text
-        let keys = selection |> List.map fst
 
-        let rec tatami1 (texts1: string list) (selection: (string * string list) list ) (i: int) (acc: string) =
-            match texts1 with
-            | [] -> acc // 残りの要素がなければ蓄積した文字列を返す
-            | head :: tail -> tatami2 tail selection i (acc + head)
-        and tatami2 (texts1: string list) (selection: (string * string list) list ) (i: int) (acc: string) =
-            match selection with
-            | [] -> tatami1 texts1 selection (i+1) acc
-            | (correct, wrong_options) :: tail ->
-                let rep = if i = wrongAnswer.locationIndex then wrong_options.[wrongAnswer.replaceTextIndex] else correct
-                tatami1 texts1 tail (i+1) (acc + rep)
-            | _ -> ""
-        tatami1 template selection 0 ""
-    
+let getRandomAnswer (question: QuestionDef) (rnd: Random) (correctRate: float) : Answer =
+    let lastIndex = (question.text |> getSelection |> List.length)
+    if lastIndex = 0 then
+        CorrectText
+    else
+        if rnd.NextDouble() < correctRate then
+            let locationIndex = rnd.Next(0, lastIndex)
+            let location = question.text |> getSelection |> List.item locationIndex
+            WrongText {
+                locationIndex = locationIndex
+                replaceTextIndex = rnd.Next(location |> snd |> List.length)
+            }
+        else
+            CorrectText
+
 let getCorrectText (s: QuestionDef) : string =
     let template = getTemplate s.text
     let selection = getSelection s.text
-    printfn "%A" template
-    printfn "%A" selection
 
     let keys = selection |> List.map fst
 
@@ -155,6 +131,47 @@ let getCorrectText (s: QuestionDef) : string =
     tatami1 template keys ""
 
 
+let getAnswerText (s: QuestionDef) (answer: Answer) =
+    match answer with
+    | CorrectText -> s |> getCorrectText
+    | WrongText wrongAnswer ->
+        let template = getTemplate s.text
+        let selection = getSelection s.text
+        let keys = selection |> List.map fst
+
+        let rec tatami1 (texts1: string list) (selection: (string * string list) list ) (i: int) (acc: string) =
+            match texts1 with
+            | [] -> acc // 残りの要素がなければ蓄積した文字列を返す
+            | head :: tail -> tatami2 tail selection i (acc + head)
+        and tatami2 (texts1: string list) (selection: (string * string list) list ) (i: int) (acc: string) =
+            match selection with
+            | [] -> tatami1 texts1 selection (i+1) acc
+            | (correct, wrong_options) :: tail ->
+                let rep = if i = wrongAnswer.locationIndex then "[" + correct + "]" else correct
+                tatami1 texts1 tail (i+1) (acc + rep)
+        tatami1 template selection 0 ""
+
+let getQuestionText (s: QuestionDef) (answer: Answer) =
+    match answer with
+    | CorrectText -> s |> getCorrectText
+    | WrongText wrongAnswer ->
+        let template = getTemplate s.text
+        let selection = getSelection s.text
+        let keys = selection |> List.map fst
+
+        let rec tatami1 (texts1: string list) (selection: (string * string list) list ) (i: int) (acc: string) =
+            match texts1 with
+            | [] -> acc // 残りの要素がなければ蓄積した文字列を返す
+            | head :: tail -> tatami2 tail selection i (acc + head)
+        and tatami2 (texts1: string list) (selection: (string * string list) list ) (i: int) (acc: string) =
+            match selection with
+            | [] -> tatami1 texts1 selection (i+1) acc
+            | (correct, wrong_options) :: tail ->
+                let rep = if i = wrongAnswer.locationIndex then wrong_options.[wrongAnswer.replaceTextIndex] else correct
+                tatami1 texts1 tail (i+1) (acc + rep)
+        tatami1 template selection 0 ""
+    
+(*
 let main argv =
     // let filePaths = ["data/questions.toml"; "data/不正競争防止法.toml"]
     let dirPath = "data/test"
@@ -176,3 +193,4 @@ let main argv =
 
 
     0
+    *)

@@ -11,7 +11,10 @@
     pkgs = import nixpkgs { inherit system; };
   in {
     devShells.${system}.default = pkgs.mkShell {
-      packages = with pkgs; [ dotnet-sdk ];
+      packages = with pkgs; [ 
+        # dotnet-sdk
+        dotnet-sdk_10
+      ];
       shellHook = ''
         echo "F# environment is ready!"
         # dotnet fsi
