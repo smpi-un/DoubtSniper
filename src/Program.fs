@@ -71,7 +71,9 @@ let askQuestion2 (question: QuestionDef) (answer: Answer) : bool =
     match answer with
     | WrongText ans -> printfn "A: %s" (getAnswerText question answer)
     | CorrectText -> printfn "No incorrect location"
-    printfn "%s" question.explanation
+
+    let explanation = question.explanation.Trim().Split('\n') |> Seq.map (fun s -> "> " + s) |> String.concat "\n"
+    if question.explanation <> "" then printfn "%s" explanation
     isCorrect
 /// <summary>
 /// Asks a question and processes the user's answer.
@@ -156,5 +158,5 @@ let main argv =
                          |> List.map (fun (q, a) -> askQuestion2 q a)
                          |> List.filter id
                          |> List.length
-        printfn "Correct: %d/%d" correctNum (questions.Length)
+        printfn "Correct: %d/%d" correctNum num
         0
