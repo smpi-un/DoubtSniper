@@ -49,6 +49,7 @@ let getQuestionById (id: string) (questions: QuestionDef list) : QuestionDef opt
 /// <param name="question">The question to ask.</param>
 let askQuestion2 (question: QuestionDef) (answer: Answer) : bool =
     printfn "============================================"
+    printfn ""
     if question.category <> "" then printfn "[ Category  ] %s" question.category
     if question.name <> "" then printfn "[   Name    ] %s" question.name
     if question.description <> "" then printfn "[Description] %s" question.description
@@ -66,14 +67,17 @@ let askQuestion2 (question: QuestionDef) (answer: Answer) : bool =
         | WrongText _ -> input.Trim() <> ""
         | CorrectText -> input.Trim() = ""
 
-    printfn (if isCorrect then "✔Correct!" else "✗Incorrect.")
+    printfn (if isCorrect then "☆★☆★☆★☆★ ✔Correct! ☆★☆★☆★☆★" else "☹☹☹☹☹☹☹☹ ✗Incorrect. ☹☹☹☹☹☹☹☹")
 
     match answer with
     | WrongText ans -> printfn "A: %s" (getAnswerText question answer)
     | CorrectText -> printfn "No incorrect location"
 
-    let explanation = question.explanation.Trim().Split('\n') |> Seq.map (fun s -> "> " + s) |> String.concat "\n"
+    let explanation = question.explanation.Split('\n') |> Seq.map (fun s -> "> " + s) |> String.concat "\n"
     if question.explanation <> "" then printfn "%s" explanation
+
+    printfn ""
+
     isCorrect
 /// <summary>
 /// Asks a question and processes the user's answer.
@@ -116,8 +120,11 @@ let shuffle list =
     |> List.map snd                        // 元の要素だけを取り出す
 
 let listupToml dirPath =
-    let files = Directory.GetFiles(dirPath, "*.toml", SearchOption.AllDirectories)
-    files |> Seq.toList |> List.map Path.GetFullPath
+    if not (Directory.Exists(dirPath)) then
+        []
+    else
+        let files = Directory.GetFiles(dirPath, "*.toml", SearchOption.AllDirectories)
+        files |> Seq.toList |> List.map Path.GetFullPath
 
 /// <summary>
 /// The main entry point for the application.
@@ -128,7 +135,7 @@ let listupToml dirPath =
 let main argv =
     // DoubtSnaiper.main argv |> ignore
     // let filePaths = ["data/questions.toml"; "data/不正競争防止法.toml"]
-    let dirPath = "data/keizai"
+    let dirPath = "data/chuushou"
     let gameType = DoubtOrNoDoubts
     let filePaths = listupToml dirPath
     let tomls = filePaths |> List.map File.ReadAllText
@@ -158,5 +165,5 @@ let main argv =
                          |> List.map (fun (q, a) -> askQuestion2 q a)
                          |> List.filter id
                          |> List.length
-        printfn "Correct: %d/%d" correctNum num
+        printfn "Correct: %d/%d" correctNum (Math.Min(num, questions.Length))
         0

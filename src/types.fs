@@ -55,12 +55,12 @@ let parseQuestions (toml: string) : QuestionDef list =
     questions
     |> Seq.map (fun q ->
         {
-            id = q.["id"].ToString()
-            name = if q.ContainsKey("name") then q.["name"].ToString() else ""
-            category = if q.ContainsKey("category") then q.["category"].ToString() else ""
-            description = if q.ContainsKey("description") then q.["description"].ToString() else ""
-            text = q.["text"].ToString()
-            explanation = if q.ContainsKey("explanation") then q.["explanation"].ToString() else ""
+            id = q.["id"].ToString().Trim()
+            name = if q.ContainsKey("name") then q.["name"].ToString().Trim() else ""
+            category = if q.ContainsKey("category") then q.["category"].ToString().Trim() else ""
+            description = if q.ContainsKey("description") then q.["description"].ToString().Trim() else ""
+            text = q.["text"].ToString().Trim()
+            explanation = if q.ContainsKey("explanation") then q.["explanation"].ToString().Trim() else ""
         })
     |> Seq.toList
 
