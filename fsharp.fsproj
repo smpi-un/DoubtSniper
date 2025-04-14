@@ -5,7 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="src/types.fs" />
+    <Compile Include="src/types/config.fs" />
+    <Compile Include="src/types/question.fs" />
     <Compile Include="src/Program.fs" />
     <!--<PackageReference Include="Tomlyn" Version="0.9.6" />-->
     <PackageReference Include="Tomlyn" Version="0.10.0" />

@@ -1,0 +1,6 @@
+[[boxes]]
+name = "default"
+paths = [
+  './data',
+  # 'C:\Users\shimp\OneDrive\Documents\DoubtSniperData',
+]

@@ -7,9 +7,6 @@ open System.Text.RegularExpressions
 
 
 
-type GameType =
-    | SelectDoubt
-    | DoubtOrNoDoubts
 
 type QuestionDef = {
     id: string
@@ -32,15 +29,67 @@ type Question = {
     questionDef: QuestionDef
     answer: Answer
 }
+
+open System.IO
+open System
+
+/// <summary>
+/// Parses a CSV file to extract a list of questions, handling arbitrary header order.
+/// </summary>
+/// <param name="csv">The CSV content as a string.</param>
+/// <returns>A list of questions parsed from the file.</returns>
+let parseCsvQuestions (csv: string) : QuestionDef list =
+    // CSVを文字列の行ごとに分割
+    let lines = csv.Split('\n', StringSplitOptions.RemoveEmptyEntries) |> Array.toList
     
-    
+    // ヘッダー行とデータ行を分離
+    match lines with
+    | header :: dataLines ->
+        // ヘッダー行をカンマで分割してトリム
+        let headers = header.Split(',', StringSplitOptions.None) |> Array.map (fun s -> s.Trim().ToLower())
+        
+        // 各列のインデックスを検索
+        let findIndex (name: string) = 
+            Array.tryFindIndex (fun h -> h = name.ToLower()) headers
+            |> Option.defaultValue -1 // 見つからない場合は-1
+
+        let idIndex = findIndex "id"
+        let nameIndex = findIndex "name"
+        let categoryIndex = findIndex "category"
+        let descriptionIndex = findIndex "description"
+        let textIndex = findIndex "text"
+        let explanationIndex = findIndex "explanation"
+
+        // データ行をQuestionDefに変換
+        dataLines
+        |> List.choose (fun line ->
+            try
+                let columns = line.Split(',', StringSplitOptions.None) |> Array.map (fun s -> s.Trim())
+
+                // 列インデックスが有効かチェックし、値を取得
+                let getColumn index defaultValue =
+                    if index >= 0 && index < columns.Length then columns.[index]
+                    else defaultValue
+
+                Some {
+                    id = getColumn idIndex ""
+                    name = getColumn nameIndex ""
+                    category = getColumn categoryIndex ""
+                    description = getColumn descriptionIndex ""
+                    text = getColumn textIndex ""
+                    explanation = getColumn explanationIndex ""
+                }
+            with
+            | _ -> None // 行の解析に失敗した場合はスキップ
+        )
+    | [] -> []
 
 /// <summary>
 /// Parses a TOML file to extract a list of questions.
 /// </summary>
 /// <param name="filePath">The path to the TOML file.</param>
 /// <returns>A list of questions parsed from the file.</returns>
-let parseQuestions (toml: string) : QuestionDef list =
+let parseTomlQuestions (toml: string) : QuestionDef list =
     /// <summary>
     /// Extracts the correct answer for a given location ID from the text.
     /// </summary>
@@ -171,26 +220,3 @@ let getQuestionText (s: QuestionDef) (answer: Answer) =
                 tatami1 texts1 tail (i+1) (acc + rep)
         tatami1 template selection 0 ""
     
-(*
-let main argv =
-    // let filePaths = ["data/questions.toml"; "data/不正競争防止法.toml"]
-    let dirPath = "data/test"
-    let filePaths = listupToml dirPath
-    let tomls = filePaths |> List.map File.ReadAllText
-    let questions_list = tomls |> List.map parseQuestions
-    let questions = questions_list |> List.concat
-    let rnd = Random()
-    printfn "%A" questions
-    printfn "%s" (getCorrectText questions.[1])
-    printfn "%s" (getQuestionText questions.[1] (getRandomWrongAnswer  questions.[1] rnd))
-    // printfn "%A" (replaceOptionsWithCommaAndSplit questions.[0].text)
-    // printfn "%A" (parseOptionsToTupleList questions.[0].text)
-    // let questions = questions_list |> List.concat
-    // let rnd = Random()
-    // let answers = questions |> List.map (fun q -> getRandomAnswer q rnd)
-
-    let num = 10
-
-
-    0
-    *)

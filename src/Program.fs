@@ -4,6 +4,7 @@ open Tomlyn
 open Tomlyn.Model
 open System.Text.RegularExpressions
 open DoubtSnaiper
+open Config
 
 
 
@@ -112,19 +113,23 @@ let askQuestion (question: Question) (answer: Answer) : bool =
     isCorrect
 *)
 
-let shuffle list =
-    let rnd = System.Random()
+let shuffle (rnd: Random) list =
     list 
     |> List.map (fun x -> (rnd.Next(), x)) // 各要素にランダムな数値を付ける
     |> List.sortBy fst                     // ランダム値でソート
     |> List.map snd                        // 元の要素だけを取り出す
 
-let listupToml dirPath =
-    if not (Directory.Exists(dirPath)) then
-        []
-    else
-        let files = Directory.GetFiles(dirPath, "*.toml", SearchOption.AllDirectories)
-        files |> Seq.toList |> List.map Path.GetFullPath
+let readConfig (filePath: string) : Config =
+    let tomlContent = File.ReadAllText(filePath)
+    let model = Toml.Parse(tomlContent).ToModel()
+    let boxes = 
+        model.["boxes"] :?> TomlTableArray
+        |> Seq.map (fun box -> 
+            { Name = box.["name"].ToString()
+              Paths = (box.["paths"] :?> TomlArray) |> Seq.map (fun p -> p.ToString()) |> List.ofSeq })
+        |> List.ofSeq
+    { Boxes = boxes }
+
 
 /// <summary>
 /// The main entry point for the application.
@@ -133,13 +138,33 @@ let listupToml dirPath =
 /// <returns>An integer exit code.</returns>
 [<EntryPoint>]
 let main argv =
+    let config = readConfig "config.toml"
+    printfn "Config: %s" (config.ToString())
+    let boxPaths =
+        config.Boxes
+        |> List.map (fun box -> box.Paths)
+        |> List.concat
     // DoubtSnaiper.main argv |> ignore
     // let filePaths = ["data/questions.toml"; "data/不正競争防止法.toml"]
-    let dirPath = "data/chuushou"
     let gameType = DoubtOrNoDoubts
-    let filePaths = listupToml dirPath
-    let tomls = filePaths |> List.map File.ReadAllText
-    let questions = tomls |> List.map parseQuestions |> List.concat
+    let tomlQuestions =
+        boxPaths
+        |> List.map (fun boxPath ->
+            Directory.GetFiles(boxPath, "*.toml", SearchOption.AllDirectories)
+            |> Seq.toList
+            |> List.map (Path.GetFullPath >> File.ReadAllText >> parseTomlQuestions)
+            |> List.concat)
+        |> List.concat
+    let csvQuestions =
+        boxPaths
+        |> List.map (fun boxPath ->
+            Directory.GetFiles(boxPath, "*.csv", SearchOption.AllDirectories)
+            |> Seq.toList
+            |> List.map (Path.GetFullPath >> File.ReadAllText >> parseCsvQuestions)
+            |> List.concat)
+        |> List.concat
+    let questions = tomlQuestions @ csvQuestions
+    printfn "Questions: %s" (questions.ToString())
 
     let rnd = Random()
     let answers = questions |> List.map (fun q -> getRandomAnswer q rnd 0.5)
@@ -150,7 +175,7 @@ let main argv =
     | SelectDoubt ->
     (*
         let correctNum = List.zip questions answers
-                         |> shuffle
+                         |> shuffle rnd
                          |> List.truncate num
                          |> List.map (fun (q, a) -> askQuestion q a)
                          |> List.filter id
@@ -160,7 +185,7 @@ let main argv =
         0
     | DoubtOrNoDoubts ->
         let correctNum = List.zip questions answers
-                         |> shuffle
+                         |> shuffle rnd
                          |> List.truncate num
                          |> List.map (fun (q, a) -> askQuestion2 q a)
                          |> List.filter id
