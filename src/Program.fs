@@ -5,13 +5,26 @@ open Tomlyn.Model
 open System.Text.RegularExpressions
 open DoubtSnaiper
 open Config
-
-
-
+open Microsoft.AspNetCore.Builder
+open Microsoft.AspNetCore.Hosting
+open Microsoft.Extensions.DependencyInjection
+open Microsoft.Extensions.Hosting
+open Microsoft.AspNetCore.Http
+open Argu
 
 type GameType =
     | SelectDoubt
     | DoubtOrNoDoubts
+
+type CLIArguments =
+    | [<SubCommand>] Server
+    | [<SubCommand>] Game
+with
+    interface IArgParserTemplate with
+        member s.Usage =
+            match s with
+            | Server -> "Start the web server."
+            | Game _ -> "Run the game with the specified type."
 
 
 
@@ -80,38 +93,33 @@ let askQuestion2 (question: QuestionDef) (answer: Answer) : bool =
     printfn ""
 
     isCorrect
-/// <summary>
-/// Asks a question and processes the user's answer.
-/// </summary>
-/// <param name="question">The question to ask.</param>
-(*
-let askQuestion (question: Question) (answer: Answer) : bool =
-    printfn "Category: %s" question.category
-    printfn "Name: %s" question.name
-    printfn "Description: %s" question.description
+/// 質問データを読み込む
+let loadQuestions (config: Config) =
+    let boxPaths =
+        config.Boxes
+        |> List.collect (fun box -> box.Paths)
 
-    let finalText = replacePlaceholdersForSelectDoubt question.text question.locations answer
-    printfn "Text: %s" finalText
+    let loadQuestionsFromFiles filePattern parser =
+        boxPaths
+        |> List.collect (fun boxPath ->
+            Directory.GetFiles(boxPath, filePattern, SearchOption.AllDirectories)
+            |> Seq.toList
+            |> List.collect (Path.GetFullPath >> File.ReadAllText >> parser))
 
-    printf "Enter the number of the incorrect location: "
-    let input = Console.ReadLine()
+    let tomlQuestions = loadQuestionsFromFiles "*.toml" parseTomlQuestions
+    let csvQuestions = loadQuestionsFromFiles "*.csv" parseCsvQuestions
 
-    // printf "Answer: %s" answer.location
+    tomlQuestions @ csvQuestions
 
-    let answerIndex = 
-      match answer with
-      | WrongText ans -> ans.locationIndex.ToString()
-      | CorrectText -> "0"
-    let isCorrect = (input.Trim()) = answerIndex
+/// Webアプリケーションを構成する
+let configureWebApp (questions: QuestionDef list) =
+    let builder = WebApplication.CreateBuilder()
+    let app = builder.Build()
 
-    printfn (if isCorrect then "✔Correct!" else "✗Incorrect.")
+    app.MapGet("/", Func<HttpContext, string>(fun _ -> "DoubtSniper Web API is running."))
+    app.MapGet("/questions", Func<HttpContext, string>(fun _ -> questions |> List.map (fun q -> q.ToString()) |> String.concat "\n"))
 
-    match answer with
-    | WrongText ans -> printfn "Answer: (%s)%s" (ans.locationIndex.ToString()) ans.correctAnswer
-    | CorrectText -> printfn "Answer: No incorrect location"
-    printfn "%s" question.explanation
-    isCorrect
-*)
+    app
 
 let shuffle (rnd: Random) list =
     list 
@@ -130,58 +138,15 @@ let readConfig (filePath: string) : Config =
         |> List.ofSeq
     { Boxes = boxes }
 
-
-/// <summary>
-/// The main entry point for the application.
-/// </summary>
-/// <param name="argv">Command-line arguments.</param>
-/// <returns>An integer exit code.</returns>
-[<EntryPoint>]
-let main argv =
-    let config = readConfig "config.toml"
-    printfn "Config: %s" (config.ToString())
-    let boxPaths =
-        config.Boxes
-        |> List.map (fun box -> box.Paths)
-        |> List.concat
-    // DoubtSnaiper.main argv |> ignore
-    // let filePaths = ["data/questions.toml"; "data/不正競争防止法.toml"]
-    let gameType = DoubtOrNoDoubts
-    let tomlQuestions =
-        boxPaths
-        |> List.map (fun boxPath ->
-            Directory.GetFiles(boxPath, "*.toml", SearchOption.AllDirectories)
-            |> Seq.toList
-            |> List.map (Path.GetFullPath >> File.ReadAllText >> parseTomlQuestions)
-            |> List.concat)
-        |> List.concat
-    let csvQuestions =
-        boxPaths
-        |> List.map (fun boxPath ->
-            Directory.GetFiles(boxPath, "*.csv", SearchOption.AllDirectories)
-            |> Seq.toList
-            |> List.map (Path.GetFullPath >> File.ReadAllText >> parseCsvQuestions)
-            |> List.concat)
-        |> List.concat
-    let questions = tomlQuestions @ csvQuestions
-    printfn "Questions: %s" (questions.ToString())
-
+/// ゲームを実行する
+let runGame (questions: QuestionDef list) (gameType: GameType) =
     let rnd = Random()
     let answers = questions |> List.map (fun q -> getRandomAnswer q rnd 0.5)
-
     let num = 10
 
     match gameType with
-    | SelectDoubt ->
-    (*
-        let correctNum = List.zip questions answers
-                         |> shuffle rnd
-                         |> List.truncate num
-                         |> List.map (fun (q, a) -> askQuestion q a)
-                         |> List.filter id
-                         |> List.length
-        printfn "Correct: %d/%d" correctNum (questions.Length)
-        *)
+    | SelectDoubt -> 
+        printfn "SelectDoubt mode is not implemented yet."
         0
     | DoubtOrNoDoubts ->
         let correctNum = List.zip questions answers
@@ -192,3 +157,22 @@ let main argv =
                          |> List.length
         printfn "Correct: %d/%d" correctNum (Math.Min(num, questions.Length))
         0
+
+[<EntryPoint>]
+let main argv =
+    let parser: ArgumentParser<CLIArguments> = ArgumentParser.Create<CLIArguments>()
+    let results = parser.Parse(argv)
+
+    let config = readConfig "config.toml"
+    let questions = loadQuestions config
+
+    match results.GetAllResults() with
+    | [ Server ] ->
+        let app = configureWebApp questions
+        app.Run()
+        0
+    | [ Game ] ->
+        runGame questions DoubtOrNoDoubts
+    | _ ->
+        printfn "%s" (parser.PrintUsage())
+        1
