@@ -114,10 +114,23 @@ let loadQuestions (config: Config) =
 /// Webアプリケーションを構成する
 let configureWebApp (questions: QuestionDef list) =
     let builder = WebApplication.CreateBuilder()
+
+    // Add CORS services
+    builder.Services.AddCors(fun options ->
+        options.AddDefaultPolicy(
+            System.Action<Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder>(fun builder ->
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader() |> ignore))) |> ignore
+
     let app = builder.Build()
+
+    // Use CORS middleware
+    app.UseCors()
 
     app.MapGet("/", Func<HttpContext, string>(fun _ -> "DoubtSniper Web API is running."))
     app.MapGet("/questions", Func<HttpContext, string>(fun _ -> questions |> List.map (fun q -> q.ToString()) |> String.concat "\n"))
+    app.MapGet("/exam", Func<HttpContext, string>(fun _ -> """{ "id": "string",  "text": "これはテスト問題です"  }"""))
 
     app
 

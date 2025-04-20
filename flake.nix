@@ -11,13 +11,13 @@
     pkgs = import nixpkgs { inherit system; };
   in {
     devShells.${system}.default = pkgs.mkShell {
-      packages = with pkgs; [ 
+      packages = with pkgs; [
         # dotnet-sdk
         dotnet-sdk_10
+        elmPackages.elm
       ];
       shellHook = ''
-        echo "F# environment is ready!"
-        # dotnet fsi
+        echo "F# and elm environment is ready!"
       '';
     };
   };

@@ -9,6 +9,7 @@
     <Compile Include="src/types/question.fs" />
     <Compile Include="src/Program.fs" />
     <PackageReference Include="Argu" Version="6.2.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.3.0" />
     <!--<PackageReference Include="Tomlyn" Version="0.9.6" />-->
     <PackageReference Include="Tomlyn" Version="0.10.0" />
   </ItemGroup>
