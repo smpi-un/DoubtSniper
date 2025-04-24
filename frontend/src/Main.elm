@@ -2,12 +2,10 @@ module Main exposing (main)
 
 import Browser
 import Element exposing (Element)
-import Element.Input as Input
 import Http
 import Json.Decode as Decode
 import Url
-import Widget exposing (column)
-import Widget as Button
+import Widget
 import Widget.Material as Material
 --import Widget as TextField
 import Json.Encode
@@ -140,34 +138,60 @@ httpErrorToString error =
 
 view : Model -> Element Msg
 view model =
-    column
-        Material.column
-        [ case model.questionState of
-            Loading ->
-                Element.text "問題を読み込み中..."
+    let
 
-            Success question ->
-                column
-                    Material.column
-                    [ Element.text question.text
-                    --, TextField.textField
-                    --    (Material.textField Material.defaultPalette)
-                    --    { text = model.answerInput
-                    --    , placeholder = Nothing
-                    --    , onChange = AnswerInput
-                    --    , label = Element.text "回答を入力"
-                    --    }
-                    --, Button.button
-                    --    (Material.containedButton Material.defaultPalette)
-                    --    { text = "解答を送信"
-                    --    , icon = Element.none
-                    --    , onPress = Just SubmitAnswer
-                    --    }
-                    ]
+        answerButtons = Widget.row
+            Material.row
+            [ Widget.textButton
+                (Material.containedButton Material.defaultPalette)
+                { text = "Test Button"
+                , onPress = Just SubmitAnswer
+                }
+            , Widget.textButton
+                (Material.containedButton Material.defaultPalette)
+                { text = "Test Button"
+                , onPress = Just SubmitAnswer
+                }
+            ]
+        answerButtons2 =
+            Element.row
+                [ Element.width Element.fill, Element.spacingXY 10 0 ]
+                [ Widget.textButton
+                    (Material.containedButton Material.defaultPalette)
+                    { text = "Test Button"
+                    , onPress = Just SubmitAnswer
+                    }
+                , Widget.textButton
+                    (Material.containedButton Material.defaultPalette)
+                    { text = "Test Button"
+                    , onPress = Just SubmitAnswer
+                    }
+                ]
+    in
+        Widget.column
+            Material.column
+            [ case model.questionState of
+                Loading ->
+                    Element.text "問題を読み込み中..."
 
-            Failure error ->
-                Element.text ("問題の読み込みに失敗しました: " ++ httpErrorToString error)
-        ]
+                Success question ->
+                    Widget.column
+                        Material.column
+                        [ Element.text question.text
+                        -- ,   Widget.textInput
+                        --     (Material.textInput Material.defaultPalette)
+                        --     { text = model.answerInput
+                        --     , placeholder = Nothing
+                        --     , onChange = AnswerInput
+                        --     , label = "Test Input"
+                        --     , chips = []
+                        --     }
+                        , answerButtons2
+                        ]
+
+                Failure error ->
+                    Element.text ("問題の読み込みに失敗しました: " ++ httpErrorToString error)
+            ]
 
 -- Main
 
