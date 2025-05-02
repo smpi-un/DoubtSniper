@@ -69,8 +69,11 @@ class QuizPage extends StatefulWidget {
 class _QuizPageState extends State<QuizPage> {
   QuestionState _questionState = QuestionState.loading;
   Question? _question;
-  String _answerInput = '';
   String? _errorMessage;
+  bool? _isCorrect; // 回答が正解だったか
+  String? _correctAnswer; // 正しい解答
+  String? _explanation; // 解説
+
 
   @override
   void initState() {
@@ -108,30 +111,44 @@ class _QuizPageState extends State<QuizPage> {
   }
 
   // 回答を送信するHTTPリクエスト
+  // 回答を送信するHTTPリクエスト
   Future<void> _submitAnswer(String questionId, bool isCorrect) async {
-    final answer = isCorrect ? '正しい' : '間違い';
-    
+    setState(() {
+      _questionState = QuestionState.loading; // 回答送信中もローディング表示
+      _isCorrect = null; // 結果をリセット
+      _correctAnswer = null;
+      _explanation = null;
+    });
+
     try {
       final response = await http.post(
         Uri.parse('http://localhost:5067/answer'),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({
-          'id': questionId,
-          'answer': answer,
+          'questionId': questionId,
+          'isCorrect': isCorrect, // boolean値を送信
         }),
       );
-      
+      debugPrint('Response status code: ${response.statusCode}');
+
       if (response.statusCode == 200) {
-        // 回答送信成功後、次の問題を取得
-        _fetchQuestion();
+        final answerResult = jsonDecode(response.body);
+        setState(() {
+          _isCorrect = answerResult['isCorrect'];
+          _correctAnswer = answerResult['correctAnswer'];
+          _explanation = answerResult['explanation'];
+          _questionState = QuestionState.success; // 結果表示のためにsuccess状態を維持
+        });
       } else {
         setState(() {
           _errorMessage = '回答の送信に失敗しました: ステータスコード ${response.statusCode}';
+          _questionState = QuestionState.failure;
         });
       }
     } catch (e) {
       setState(() {
         _errorMessage = '回答の送信に失敗しました: $e';
+        _questionState = QuestionState.failure;
       });
     }
   }
@@ -161,38 +178,69 @@ class _QuizPageState extends State<QuizPage> {
         return [
           const CircularProgressIndicator(),
           const SizedBox(height: 20),
-          const Text('問題を読み込み中...'),
+          const Text('処理中...'), // 問題読み込み中と回答送信中の両方で使用
         ];
-      
+
       case QuestionState.success:
-        return [
+        // 問題表示と回答入力、または回答結果表示
+        List<Widget> content = [
           Text(
             _question!.text,
             style: const TextStyle(fontSize: 18),
             textAlign: TextAlign.center,
           ),
-          const SizedBox(height: 30),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              ElevatedButton(
-                onPressed: () => _submitAnswer(_question!.id, true),
-                style: ElevatedButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-                ),
-                child: const Text('正しい'),
-              ),
-              ElevatedButton(
-                onPressed: () => _submitAnswer(_question!.id, false),
-                style: ElevatedButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-                ),
-                child: const Text('間違い'),
-              ),
-            ],
-          ),
+          const SizedBox(height: 20),
         ];
-      
+
+        if (_isCorrect == null) {
+          // 回答選択ボタン
+          content.addAll([
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                ElevatedButton(
+                  onPressed: () => _submitAnswer(_question!.id, true),
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+                  ),
+                  child: const Text('正しい'),
+                ),
+                ElevatedButton(
+                  onPressed: () => _submitAnswer(_question!.id, false),
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+                  ),
+                  child: const Text('間違い'),
+                ),
+              ],
+            ),
+          ]);
+        } else {
+          // 回答結果表示
+          content.addAll([
+            Text(
+              _isCorrect! ? '正解！' : '不正解...',
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                color: _isCorrect! ? Colors.green : Colors.red,
+              ),
+            ),
+            const SizedBox(height: 10),
+            Text('正しい解答: $_correctAnswer'),
+            const SizedBox(height: 10),
+            Text('解説: $_explanation'),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                _fetchQuestion(); // 次の問題を取得
+              },
+              child: const Text('次の問題へ'),
+            ),
+          ]);
+        }
+        return content;
+
       case QuestionState.failure:
         return [
           Icon(Icons.error, color: Colors.red[700], size: 60),

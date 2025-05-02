@@ -220,3 +220,17 @@ let getQuestionText (s: QuestionDef) (answer: Answer) =
                 tatami1 texts1 tail (i+1) (acc + rep)
         tatami1 template selection 0 ""
     
+// 新しいAPIのための型定義
+
+/// ユーザーからの回答リクエストを表す型
+type AnswerRequest = {
+    questionId: string
+    isCorrect: bool // ユーザーが「正しい」か「間違い」かを選択した結果
+}
+
+/// 回答結果を返すための型
+type AnswerResponse = {
+    isCorrect: bool
+    correctAnswer: string
+    explanation: string
+}
