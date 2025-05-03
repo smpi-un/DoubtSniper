@@ -4,33 +4,47 @@ import 'dart:io' show Platform;
 import 'package:http/http.dart' as http;
 import 'package:flutter/rendering.dart';
 import 'package:flutter/foundation.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-void main() {
+Future<void> main() async {
   // Flutterエンジンを初期化
   WidgetsFlutterBinding.ensureInitialized();
-  
+
+  // google_fontsを初期化
+  await GoogleFonts.pendingFonts([
+    GoogleFonts.notoSansJp(),
+  ]);
+
   // Linux向けのレンダリング設定を追加
   debugPaintSizeEnabled = false;
-  
+
   // Linuxプラットフォーム固有の設定
   if (!kIsWeb && Platform.isLinux) {
     // Linuxでのレンダリング設定
     debugPrint('Running on Linux platform');
   }
-  
+
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
   @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+    
     return MaterialApp(
       title: 'クイズアプリ',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         useMaterial3: true,
+        textTheme: GoogleFonts.notoSansJpTextTheme(textTheme),
       ),
       home: const QuizPage(),
     );
@@ -74,7 +88,6 @@ class _QuizPageState extends State<QuizPage> {
   String? _correctAnswer; // 正しい解答
   String? _explanation; // 解説
 
-
   @override
   void initState() {
     super.initState();
@@ -85,11 +98,14 @@ class _QuizPageState extends State<QuizPage> {
   Future<void> _fetchQuestion() async {
     setState(() {
       _questionState = QuestionState.loading;
+      _isCorrect = null; // 回答結果をリセット
+      _correctAnswer = null;
+      _explanation = null;
     });
 
     try {
       final response = await http.get(Uri.parse('http://localhost:5067/exam'));
-      
+
       if (response.statusCode == 200) {
         final questionData = jsonDecode(response.body);
         setState(() {
@@ -111,8 +127,8 @@ class _QuizPageState extends State<QuizPage> {
   }
 
   // 回答を送信するHTTPリクエスト
-  // 回答を送信するHTTPリクエスト
-  Future<void> _submitAnswer(String questionId, bool isCorrect) async {
+  Future<void> _submitAnswer(
+      String questionId, String questionText, bool isCorrect) async {
     setState(() {
       _questionState = QuestionState.loading; // 回答送信中もローディング表示
       _isCorrect = null; // 結果をリセット
@@ -126,6 +142,7 @@ class _QuizPageState extends State<QuizPage> {
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({
           'questionId': questionId,
+          'questionText': questionText,
           'isCorrect': isCorrect, // boolean値を送信
         }),
       );
@@ -184,7 +201,7 @@ class _QuizPageState extends State<QuizPage> {
       case QuestionState.success:
         // 問題表示と回答入力、または回答結果表示
         List<Widget> content = [
-          Text(
+          SelectableText(
             _question!.text,
             style: const TextStyle(fontSize: 18),
             textAlign: TextAlign.center,
@@ -199,16 +216,20 @@ class _QuizPageState extends State<QuizPage> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 ElevatedButton(
-                  onPressed: () => _submitAnswer(_question!.id, true),
+                  onPressed: () =>
+                      _submitAnswer(_question!.id, _question!.text, true),
                   style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 30, vertical: 15),
                   ),
                   child: const Text('正しい'),
                 ),
                 ElevatedButton(
-                  onPressed: () => _submitAnswer(_question!.id, false),
+                  onPressed: () =>
+                      _submitAnswer(_question!.id, _question!.text, false),
                   style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 30, vertical: 15),
                   ),
                   child: const Text('間違い'),
                 ),
@@ -218,7 +239,7 @@ class _QuizPageState extends State<QuizPage> {
         } else {
           // 回答結果表示
           content.addAll([
-            Text(
+            SelectableText(
               _isCorrect! ? '正解！' : '不正解...',
               style: TextStyle(
                 fontSize: 24,
@@ -227,9 +248,9 @@ class _QuizPageState extends State<QuizPage> {
               ),
             ),
             const SizedBox(height: 10),
-            Text('正しい解答: $_correctAnswer'),
+            SelectableText('正しい解答: $_correctAnswer'),
             const SizedBox(height: 10),
-            Text('解説: $_explanation'),
+            SelectableText('解説: $_explanation'),
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {

@@ -1,10 +1,12 @@
-module DoubtSnaiper
+module Question
+
 open System
 open System.IO
+open System.Text.RegularExpressions
 open Tomlyn
 open Tomlyn.Model
-open System.Text.RegularExpressions
 
+open Config
 
 
 
@@ -30,8 +32,35 @@ type Question = {
     answer: Answer
 }
 
-open System.IO
-open System
+
+/// <summary>
+/// Parses a TOML file to extract a list of questions.
+/// </summary>
+/// <param name="toml">The TOML content as a string.</param>
+/// <returns>A list of questions parsed from the file.</returns>
+let parseTomlQuestions (toml: string) : QuestionDef list =
+    /// <summary>
+    /// Extracts the correct answer for a given location ID from the text.
+    /// </summary>
+    /// <param name="text">The text containing embedded locations.</param>
+    /// <param name="locationId">The ID of the location to extract.</param>
+    /// <returns>The correct answer for the specified location.</returns>
+
+    let model = Toml.Parse(toml).ToModel()
+    let questions = model.["questions"] :?> TomlTableArray
+
+
+    questions
+    |> Seq.map (fun q ->
+        {
+            id = q.["id"].ToString().Trim()
+            name = if q.ContainsKey("name") then q.["name"].ToString().Trim() else ""
+            category = if q.ContainsKey("category") then q.["category"].ToString().Trim() else ""
+            description = if q.ContainsKey("description") then q.["description"].ToString().Trim() else ""
+            text = q.["text"].ToString().Trim()
+            explanation = if q.ContainsKey("explanation") then q.["explanation"].ToString().Trim() else ""
+        })
+    |> Seq.toList
 
 /// <summary>
 /// Parses a CSV file to extract a list of questions, handling arbitrary header order.
@@ -84,34 +113,30 @@ let parseCsvQuestions (csv: string) : QuestionDef list =
         )
     | [] -> []
 
-/// <summary>
-/// Parses a TOML file to extract a list of questions.
-/// </summary>
-/// <param name="filePath">The path to the TOML file.</param>
-/// <returns>A list of questions parsed from the file.</returns>
-let parseTomlQuestions (toml: string) : QuestionDef list =
-    /// <summary>
-    /// Extracts the correct answer for a given location ID from the text.
-    /// </summary>
-    /// <param name="text">The text containing embedded locations.</param>
-    /// <param name="locationId">The ID of the location to extract.</param>
-    /// <returns>The correct answer for the specified location.</returns>
+/// 質問データを読み込む
+let loadQuestions (config: Config) =
+    let boxPaths =
+        config.Boxes
+        |> List.collect (fun box -> box.Paths)
 
-    let model = Toml.Parse(toml).ToModel()
-    let questions = model.["questions"] :?> TomlTableArray
+    let loadQuestionsFromFiles filePattern parser =
+        boxPaths
+        |> List.collect (fun boxPath ->
+            Directory.GetFiles(boxPath, filePattern, SearchOption.AllDirectories)
+            |> Seq.toList
+            |> List.collect (Path.GetFullPath >> File.ReadAllText >> parser))
 
+    let tomlQuestions = loadQuestionsFromFiles "*.toml" parseTomlQuestions
+    let csvQuestions = loadQuestionsFromFiles "*.csv" parseCsvQuestions
 
-    questions
-    |> Seq.map (fun q ->
-        {
-            id = q.["id"].ToString().Trim()
-            name = if q.ContainsKey("name") then q.["name"].ToString().Trim() else ""
-            category = if q.ContainsKey("category") then q.["category"].ToString().Trim() else ""
-            description = if q.ContainsKey("description") then q.["description"].ToString().Trim() else ""
-            text = q.["text"].ToString().Trim()
-            explanation = if q.ContainsKey("explanation") then q.["explanation"].ToString().Trim() else ""
-        })
-    |> Seq.toList
+    // 無効なIDを持つ質問を除外
+    let validQuestions = 
+        (tomlQuestions @ csvQuestions)
+        |> List.filter (fun q -> not (String.IsNullOrWhiteSpace(q.id)))
+    
+    printfn "[DEBUG] Loaded %d valid questions (filtered from %d total)" validQuestions.Length (tomlQuestions.Length + csvQuestions.Length)
+    validQuestions
+
 
 /// <summary>
 /// {A|B} の形式をカンマに置き換え、指定された形式の文字列リストを返す関数。
@@ -220,17 +245,3 @@ let getQuestionText (s: QuestionDef) (answer: Answer) =
                 tatami1 texts1 tail (i+1) (acc + rep)
         tatami1 template selection 0 ""
     
-// 新しいAPIのための型定義
-
-/// ユーザーからの回答リクエストを表す型
-type AnswerRequest = {
-    questionId: string
-    isCorrect: bool // ユーザーが「正しい」か「間違い」かを選択した結果
-}
-
-/// 回答結果を返すための型
-type AnswerResponse = {
-    isCorrect: bool
-    correctAnswer: string
-    explanation: string
-}

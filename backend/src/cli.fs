@@ -4,8 +4,6 @@ open System.IO
 open Tomlyn
 open Tomlyn.Model
 open System.Text.RegularExpressions
-open DoubtSnaiper
-open Config
 open Microsoft.AspNetCore.Builder
 open Microsoft.AspNetCore.Hosting
 open Microsoft.Extensions.DependencyInjection
@@ -14,12 +12,14 @@ open Microsoft.AspNetCore.Http
 open Microsoft.AspNetCore.Http.Json // JSON処理のために追加
 open System.Threading.Tasks // Task 型のために追加
 open Argu
+open Question
+open Config
 open Common
 
 
 
 /// <summary>
-/// Asks a question and processes the user's answer.
+/// Asks a question and pocesses the user's answer.
 /// </summary>
 /// <param name="question">The question to ask.</param>
 let askQuestion2 (question: QuestionDef) (answer: Answer) : bool =
