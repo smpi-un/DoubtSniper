@@ -1,5 +1,5 @@
 [[questions]]
-id = "sme_definition_2021"
+id = "02845fb2-fa32-46e0-8810-19b5b006f7a5"
 description = """
 2021年度における中小企業の企業数に関する知識を問う。
 """
@@ -11,7 +11,7 @@ explanation = """
 """
 
 [[questions]]
-id = "sme_employee_ratio_2021"
+id = "4286dbb0-b0e8-4ad0-a5ca-4caf195ee569"
 description = """
 2021年度における全従業者数に占める中小企業の割合に関する知識を問う。
 """
@@ -23,7 +23,7 @@ explanation = """
 """
 
 [[questions]]
-id = "sme_challenges_labor_shortage"
+id = "80971957-a825-4d40-aa85-0768483b0ba1"
 description = """
 中小企業が直面する課題として人手不足が深刻化している状況を理解する。
 """
@@ -35,7 +35,7 @@ explanation = """
 """
 
 [[questions]]
-id = "sme_productivity_improvement"
+id = "9c724ea1-bf44-411c-ac51-cf7bc9f3608c"
 description = """
 中小企業の生産性向上のために必要な取り組みを理解する。
 """
@@ -47,7 +47,7 @@ explanation = """
 """
 
 [[questions]]
-id = "sme_investment_willingness"
+id = "a457d9db-3d32-47a2-b9d8-0e1cfc1f2b18"
 description = """
 足下における中小企業の投資意欲に関する状況を理解する。
 """
@@ -59,7 +59,7 @@ explanation = """
 """
 
 [[questions]]
-id = "noto_peninsula_industry"
+id = "ecf88370-e7a3-4d96-882e-d5cf9a72b5bf"
 description = """
 令和６年能登半島地震の被災地域の産業構造の特徴を理解する。
 """
@@ -71,7 +71,7 @@ explanation = """
 """
 
 [[questions]]
-id = "sme_funding_challenges"
+id = "7661a76d-a0d2-47f1-8367-1bbde45a1fa2"
 description = """
 中小企業が成長投資を行う上での資金調達の重要性を理解する。
 """
@@ -83,7 +83,7 @@ explanation = """
 """
 
 [[questions]]
-id = "sme_labor_supply"
+id = "c1020f49-9c0e-433a-88a3-950a5cfc1143"
 description = """
 生産年齢人口の減少と中小企業の労働力確保の状況を理解する。
 """
@@ -95,7 +95,7 @@ explanation = """
 """
 
 [[questions]]
-id = "sme_pricing_negotiation"
+id = "17b6e6e4-10e0-4001-acbd-d4193863a151"
 description = """
 中小企業の価格交渉の状況に関する最近の動向を理解する。
 """
@@ -107,7 +107,7 @@ explanation = """
 """
 
 [[questions]]
-id = "sme_management_issues"
+id = "e8a5fed4-b162-448c-a6af-d923ab412221"
 description = """
 中小企業が経営上抱える問題点に関する認識を理解する。
 """
@@ -119,7 +119,7 @@ explanation = """
 """
 
 [[questions]]
-id = "sme_noto_demographics"
+id = "1ec3ae7f-e1b8-470a-a233-6e902435a0e9"
 description = """
 令和６年能登半島地震の被災地域における人口構成の特徴を理解する。
 """
@@ -131,7 +131,7 @@ explanation = """
 """
 
 [[questions]]
-id = "sme_covid_impact_employment"
+id = "efba28f6-2a7c-4325-a66b-58ad7072e944"
 description = """
 新型コロナウイルス感染症の感染拡大が雇用に与えた影響と政府の対応を理解する。
 """
@@ -143,7 +143,7 @@ explanation = """
 """
 
 [[questions]]
-id = "sme_current_challenges"
+id = "e019292b-1ba5-49ee-bcb3-eba01d3fe5b4"
 description = """
 2023年における中小企業の現状と直面する課題を理解する。
 """
@@ -155,7 +155,7 @@ explanation = """
 """
 
 [[questions]]
-id = "sme_productivity_needs"
+id = "2dc69ec9-3d14-43ab-9eaa-54125100dd75"
 description = """
 中小企業の生産性向上の必要性を理解する。
 """
@@ -167,7 +167,7 @@ explanation = """
 """
 
 [[questions]]
-id = "sme_productivity_measures"
+id = "32ac6e24-d491-46ad-abc7-b508701e36cf"
 description = """
 中小企業の生産性向上に資する取り組みを理解する。
 """
@@ -179,7 +179,7 @@ explanation = """
 """
 
 [[questions]]
-id = "sme_new_consumption_patterns"
+id = "344b6d65-7a2d-4ed9-969c-395ceebf4090"
 description = """
 感染症拡大以降に浸透した新たな消費形態の例を理解する。
 """
@@ -191,7 +191,7 @@ explanation = """
 """
 
 [[questions]]
-id = "sme_business_succession_trends"
+id = "e21bc50b-e742-43be-aa3d-42dc01ac6254"
 description = """
 中小企業における休廃業・解散の現状を理解する。
 """
@@ -203,7 +203,7 @@ explanation = """
 """
 
 [[questions]]
-id = "sme_financial_support_covid"
+id = "a14f8f26-fb3f-45ae-b329-e20628f04a0f"
 description = """
 新型コロナウイルス感染症拡大期における政府の主な資金繰り支援策を理解する。
 """
@@ -215,7 +215,7 @@ explanation = """
 """
 
 [[questions]]
-id = "sme_export_trends_covid"
+id = "89df1f1f-615d-4c99-a89d-60e62beff3ba"
 description = """
 感染症拡大以降の輸出量の推移について、地域別の特徴を理解する。
 """
@@ -227,7 +227,7 @@ explanation = """
 """
 
 [[questions]]
-id = "sme_service_activity_index"
+id = "3271eaf0-3d04-4691-9a75-7b8c7c865cc7"
 description = """
 感染症拡大以降のサービス活動指数の推移を理解する。
 """
@@ -239,7 +239,7 @@ explanation = """
 """
 
 [[questions]]
-id = "chusho_kigyo_su_wariai"
+id = "5c58994f-8703-4edd-983d-445990521736"
 description = """
 日本における中小企業の企業数と割合を理解する。
 """
@@ -251,7 +251,7 @@ explanation = """
 """
 
 [[questions]]
-id = "shokibo_kigyo_gyoshubetsu"
+id = "2256672f-562c-475d-b466-283e0db4de33"
 description = """
 小規模企業の企業数が多い業種の上位を把握する。
 """
@@ -263,7 +263,7 @@ explanation = """
 """
 
 [[questions]]
-id = "chusho_kigyo_jyogyoin_wariai"
+id = "405e326e-8961-4584-96f4-ad230811a032"
 description = """
 日本における中小企業の従業者数と割合を理解する。
 """
@@ -275,7 +275,7 @@ explanation = """
 """
 
 [[questions]]
-id = "chusho_ribaiekiritsu_gyoshubetsu"
+id = "3bfce4bf-9e46-46e9-927e-649e1264067b"
 description = """
 2022年における中小企業の売上高経常利益率が最大の業種を特定する。
 """
@@ -287,7 +287,7 @@ explanation = """
 """
 
 [[questions]]
-id = "chusho_kaigyo_heigyo_ritsu"
+id = "8ce2c095-4c05-4eff-b690-da0b099691fd"
 description = """
 中小企業の開業率と廃業率の現状を理解する。
 """
@@ -299,7 +299,7 @@ explanation = """
 """
 
 [[questions]]
-id = "shokibo_kigyo_keieisha_heikin_nenrei"
+id = "3ad212bf-d34f-4fe3-b4bd-ecf50b75d447"
 description = """
 休廃業・解散した小規模企業の経営者の平均年齢を把握する。
 """
@@ -311,7 +311,7 @@ explanation = """
 """
 
 [[questions]]
-id = "jigyo_shokei_zeisei_yuyo"
+id = "14c1b945-d453-43b8-9448-7048180aa41c"
 description = """
 法人版事業承継税制における相続税・贈与税の納税猶予割合を理解する。
 """

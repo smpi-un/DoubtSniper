@@ -1,5 +1,5 @@
 [[questions]]
-id = "sme_number_employee"
+id = "4919b0cb-9045-487d-8dfc-0845f44cd7de"
 description = """
 中小企業の企業数と従業者数の割合に関する基本的な知識を問う。
 """
@@ -11,7 +11,7 @@ explanation = """
 """
 
 [[questions]]
-id = "sme_revenue_added_value"
+id = "4b7df829-f049-47c4-ab94-4769e81b3cdc"
 description = """
 中小企業の売上高と付加価値の割合に関する知識を問う。
 """
@@ -23,7 +23,7 @@ explanation = """
 """
 
 [[questions]]
-id = "sme_definition_manufacturing"
+id = "fe3c892c-ed32-4de0-8461-a3a4ca22db0c"
 description = """
 中小企業の定義（製造業）に関する知識を問う。
 """
@@ -35,7 +35,7 @@ explanation = """
 """
 
 [[questions]]
-id = "sme_financing_policy_koko"
+id = "f6716633-e23a-4a18-8a07-5d4f988bec3e"
 description = """
 日本政策金融公庫の概要に関する知識を問う。
 """
@@ -47,7 +47,7 @@ explanation = """
 """
 
 [[questions]]
-id = "credit_supplement_system"
+id = "f93bd16d-3166-46ef-85ec-ec3c024e6ca3"
 description = """
 信用補完制度の目的に関する知識を問う。
 """
@@ -59,7 +59,7 @@ explanation = """
 """
 
 [[questions]]
-id = "safety_net_guarantee"
+id = "1d065410-56bb-4156-a398-68ee80fff854"
 description = """
 セーフティネット保証制度の概要に関する知識を問う。
 """
@@ -71,7 +71,7 @@ explanation = """
 """
 
 [[questions]]
-id = "business_succession_tax_deferral"
+id = "a95e9adb-08ee-4d51-8302-065992c86312"
 description = """
 事業承継税制（法人版）の納税猶予割合に関する知識を問う。
 """
@@ -83,7 +83,7 @@ explanation = """
 """
 
 [[questions]]
-id = "m_and_a_support"
+id = "587c6d95-7b05-4ab5-9af9-865f1feca81a"
 description = """
 事業承継・引継ぎ支援センターの役割に関する知識を問う。
 """
@@ -95,7 +95,7 @@ explanation = """
 """
 
 [[questions]]
-id = "sme_definition_wholesale"
+id = "62dbd03e-3256-4baf-b91b-9e77e807812c"
 description = """
 中小企業の定義（卸売業）に関する知識を問う。
 """
@@ -107,7 +107,7 @@ explanation = """
 """
 
 [[questions]]
-id = "sme_definition_retail"
+id = "c45ad7f7-580d-40e3-987c-abac61c991a0"
 description = """
 中小企業の定義（小売業）に関する知識を問う。
 """
@@ -119,7 +119,7 @@ explanation = """
 """
 
 [[questions]]
-id = "sme_definition_service"
+id = "a6c8dad0-ca40-4289-bec1-59d4029168a0"
 description = """
 中小企業の定義（サービス業）に関する知識を問う。
 """
@@ -131,7 +131,7 @@ explanation = """
 """
 
 [[questions]]
-id = "sme_number_small_business"
+id = "9aec8e65-81a0-46cd-b6fd-9b7ebc9e1521"
 description = """
 小規模企業の企業数と割合に関する基本的な知識を問う。
 """
@@ -143,7 +143,7 @@ explanation = """
 """
 
 [[questions]]
-id = "sme_employee_small_business"
+id = "16493c3a-000e-4317-a236-b647213138b7"
 description = """
 小規模企業の従業者数と割合に関する基本的な知識を問う。
 """
@@ -155,7 +155,7 @@ explanation = """
 """
 
 [[questions]]
-id = "sme_roe_manufacturing"
+id = "8e3528e5-a52a-4cea-9ba5-435cab10150e"
 description = """
 製造業における中小企業のROEに関する知識を問う。
 """
@@ -167,7 +167,7 @@ explanation = """
 """
 
 [[questions]]
-id = "sme_self_capital_ratio"
+id = "b8e8d237-89b6-40c2-a8e6-063fbd72100d"
 description = """
 中小企業の自己資本比率に関する知識を問う。
 """
@@ -179,7 +179,7 @@ explanation = """
 """
 
 [[questions]]
-id = "sme_labor_productivity_size"
+id = "4fb633e0-c91e-44bf-ab91-2796940faf9c"
 description = """
 企業規模別の労働生産性に関する知識を問う。
 """
@@ -191,7 +191,7 @@ explanation = """
 """
 
 [[questions]]
-id = "sme_labor_productivity_industry"
+id = "45473d22-2017-4bc5-b528-54d2833e2399"
 description = """
 業種別の労働生産性に関する知識を問う。
 """
@@ -203,7 +203,7 @@ explanation = """
 """
 
 [[questions]]
-id = "sme_opening_rate"
+id = "74428f37-653d-409d-b77a-1037790e79ed"
 description = """
 業種別の開業率に関する知識を問う（2015～2021年）。
 """
@@ -215,7 +215,7 @@ explanation = """
 """
 
 [[questions]]
-id = "sme_closing_rate"
+id = "a863167f-5224-4076-8d53-65d74f2fdb8b"
 description = """
 業種別の廃業率に関する知識を問う（2015～2021年）。
 """
@@ -227,7 +227,7 @@ explanation = """
 """
 
 [[questions]]
-id = "sme_business_succession_rate"
+id = "4857f0bc-e23c-4dac-9759-fb774f95da76"
 description = """
 中小企業における後継者不在率に関する知識を問う（2023年）。
 """
@@ -239,7 +239,7 @@ explanation = """
 """
 
 [[questions]]
-id = "sme_bcp_formulation_rate"
+id = "02c7542b-142a-4564-b157-762790979dd1"
 description = """
 企業規模別の事業継続計画（BCP）の策定率に関する知識を問う。
 """
@@ -251,7 +251,7 @@ explanation = """
 """
 
 [[questions]]
-id = "sme_gx_efforts"
+id = "f2e3cd70-dc5f-4771-8617-4d9fa091b2fb"
 description = """
 中小企業におけるGX（グリーン・トランスフォーメーション）の取り組み状況に関する知識を問う。
 """
@@ -263,7 +263,7 @@ explanation = """
 """
 
 [[questions]]
-id = "sme_labor_shortage"
+id = "cfa48dc5-910c-4935-a1fc-ba24454b7b57"
 description = """
 中小企業における人手不足の状況に関する知識を問う。
 """
@@ -275,7 +275,7 @@ explanation = """
 """
 
 [[questions]]
-id = "sme_equity_finance"
+id = "8e6cbdd6-015f-4e38-932a-934708fa6d48"
 description = """
 中小企業におけるエクイティ・ファイナンスの活用に関する知識を問う。
 """
@@ -287,7 +287,7 @@ explanation = """
 """
 
 [[questions]]
-id = "sme_m_and_a_trend"
+id = "d0c78a9e-c0a5-4679-b7bc-04742c3a83b0"
 description = """
 中小企業におけるM&Aの動向に関する知識を問う。
 """
@@ -299,7 +299,7 @@ explanation = """
 """
 
 [[questions]]
-id = "small_business_challenges"
+id = "a5cc9177-408d-427b-a9b3-c846b6668876"
 description = """
 小規模事業者の経営課題に関する知識を問う。
 """
@@ -311,7 +311,7 @@ explanation = """
 """
 
 [[questions]]
-id = "small_business_profit_point"
+id = "894baeb4-cd48-438f-a2c8-35e656c1fa7d"
 description = """
 企業規模別の損益分岐点比率に関する知識を問う（2022年）。
 """
@@ -323,7 +323,7 @@ explanation = """
 """
 
 [[questions]]
-id = "sme_loan_balance"
+id = "ae7de7a0-cfed-438d-a849-f22b19525649"
 description = """
 金融機関別中小企業向け貸出残高に関する知識を問う（2023年12月）。
 """
@@ -335,7 +335,7 @@ explanation = """
 """
 
 [[questions]]
-id = "small_business_support_organization"
+id = "a0475d61-e12a-42ee-ae5a-7f5bfa24c9f8"
 description = """
 小規模事業者の支援において特に力を入れている支援対象に関する知識を問う。
 """
@@ -347,7 +347,7 @@ explanation = """
 """
 
 [[questions]]
-id = "chusho_kigyo_kigyo_su_suui"
+id = "0b4f7fcc-5774-46d3-9357-5944aedda348"
 description = """
 日本における中小企業数の推移を理解する。
 """
@@ -359,7 +359,7 @@ explanation = """
 """
 
 [[questions]]
-id = "chusho_kigyo_jyogyoin_su_suui"
+id = "9c570e5c-05fc-440f-9721-96e60b6bc7e9"
 description = """
 日本における中小企業の従業者数の推移を理解する。
 """
@@ -371,7 +371,7 @@ explanation = """
 """
 
 [[questions]]
-id = "chusho_kigyo_uriagedaka_wariai"
+id = "1f32c5e2-018c-47ee-9e98-0e575a73a98a"
 description = """
 日本の全企業の売上高に占める中小企業の割合を理解する。
 """
@@ -383,7 +383,7 @@ explanation = """
 """
 
 [[questions]]
-id = "chusho_kigyo_roe_saidai_shogyo"
+id = "290151fe-f8d4-4653-9c0d-bc02fafc3163"
 description = """
 2022年における中小企業のROEが最大の業種を特定する。
 """
@@ -395,7 +395,7 @@ explanation = """
 """
 
 [[questions]]
-id = "chusho_kigyo_syousai_syobetu_kigyo_su"
+id = "bf6fe553-ea6f-4a6a-97cb-b0e7bdbba7ba"
 description = """
 中小企業の企業数を業種別に上位4つを把握する。
 """
@@ -407,7 +407,7 @@ explanation = """
 """
 
 [[questions]]
-id = "shokibo_kigyo_syousai_syobetu_kigyo_su"
+id = "fbd8fdd9-63a5-4b70-bea6-ccde524f7939"
 description = """
 小規模企業の企業数を業種別に上位4つを把握する。
 """
@@ -419,7 +419,7 @@ explanation = """
 """
 
 [[questions]]
-id = "chusho_kigyo_kaigyo_heigyo_ritsu_2022"
+id = "7aa7e9d9-0938-432d-a1aa-5454908249b2"
 description = """
 2022年度における中小企業の開業率と廃業率を理解する。
 """
@@ -431,7 +431,7 @@ explanation = """
 """
 
 [[questions]]
-id = "kyu_haigyo_kuroji_wariai"
+id = "5e9a6c26-748f-4802-81dd-4a2295429c2c"
 description = """
 休廃業・解散した中小企業の黒字企業の割合を理解する。
 """
@@ -443,7 +443,7 @@ explanation = """
 """
 
 [[questions]]
-id = "keieisha_heikin_nenrei_kyu_haigyo"
+id = "de907632-dab6-45bc-ad03-580bb57e5f16"
 description = """
 休廃業・解散した企業の経営者の平均年齢を把握する。
 """
@@ -455,7 +455,7 @@ explanation = """
 """
 
 [[questions]]
-id = "partner_ship_kochiku_sengen"
+id = "37ff4219-1488-445a-b5cb-2278a8735efa"
 description = """
 サプライチェーンにおける共存共栄のための企業の代表者名での宣言を理解する。
 """
@@ -468,7 +468,7 @@ explanation = """
 """
 
 [[questions]]
-id = "kigyo_su_wariai_2021"
+id = "ca7cdbc9-a827-4a0a-9d48-d89b44ddb797"
 description = """
 2021年度における日本全体の企業数に占める中小企業と小規模企業の割合を理解する。
 """
@@ -480,7 +480,7 @@ explanation = """
 """
 
 [[questions]]
-id = "jyogyoin_su_wariai_2021"
+id = "599e72e5-4753-4aa4-840b-3515515ad159"
 description = """
 2021年度における全従業者数に占める中小企業と小規模企業の割合を理解する。
 """
@@ -492,7 +492,7 @@ explanation = """
 """
 
 [[questions]]
-id = "chusho_kigyo_baishu_fukagachi_suii"
+id = "0342ad50-d9f6-4c48-8434-b21477b9a2be"
 description = """
 2012年から2021年にかけての中小企業の売上高と付加価値額の推移を理解する。
 """
@@ -504,7 +504,7 @@ explanation = """
 """
 
 [[questions]]
-id = "syokibo_kigyo_baishu_fukagachi_suii"
+id = "65bf0bc7-1ef3-4afa-89dc-66a4e1ad5b25"
 description = """
 2012年から2021年にかけての小規模企業の売上高と付加価値額の推移を理解する。
 """
@@ -516,7 +516,7 @@ explanation = """
 """
 
 [[questions]]
-id = "chusho_kigyo_fukagachi_wariai"
+id = "153e6033-4aba-4976-8e7c-ea5a992c61d2"
 description = """
 2020年における日本の全企業の付加価値額に占める中小企業の割合を理解する。
 """
@@ -528,7 +528,7 @@ explanation = """
 """
 
 [[questions]]
-id = "syokibo_kigyo_fukagachi_wariai"
+id = "23e1c78e-5897-408d-8f20-30cdf7ee1405"
 description = """
 2020年における日本の全企業の付加価値額に占める小規模企業の割合を理解する。
 """
@@ -540,7 +540,7 @@ explanation = """
 """
 
 [[questions]]
-id = "chusho_kigyo_eigyo_rieki_saisho_shogyo_2022"
+id = "9c940130-de0a-4537-8d12-611e5f5b3e96"
 description = """
 2022年における中小企業の売上高経常利益率が最小の業種を特定する。
 """
@@ -552,7 +552,7 @@ explanation = """
 """
 
 [[questions]]
-id = "chusho_kigyo_sou_shihon_kaitenritsu_saidai_shogyo_2022"
+id = "e53ecff0-3008-4e64-952f-9239f87b2042"
 description = """
 2022年における中小企業の総資本回転率が最大の業種を特定する。
 """
@@ -564,7 +564,7 @@ explanation = """
 """
 
 [[questions]]
-id = "chusho_kigyo_jiko_shihon_hiritsu_saidai_shogyo_2022"
+id = "108bd560-4416-4666-b200-b63702961bc3"
 description = """
 2022年における中小企業の自己資本比率が最大の業種を特定する。
 """
@@ -576,7 +576,7 @@ explanation = """
 """
 
 [[questions]]
-id = "chusho_kigyo_fukagachi_hiritsu_saidai_shogyo_2022"
+id = "1adff6a3-e871-4838-a91d-932b996c88e2"
 description = """
 2022年における中小企業の付加価値比率が最大の業種を特定する。
 """
@@ -588,7 +588,7 @@ explanation = """
 """
 
 [[questions]]
-id = "chusho_kigyo_uretaka_suii_2021_2023"
+id = "803ff5f7-af80-4364-a414-037ab1dc017b"
 description = """
 2021年から2023年にかけての中小企業の売上高の推移を理解する。
 """
@@ -600,7 +600,7 @@ explanation = """
 """
 
 [[questions]]
-id = "chusho_kigyo_keijo_rieki_suii_2020_2023"
+id = "e11b4e46-8961-4aac-bec0-f9f61ab997c1"
 description = """
 2020年から2023年にかけての中小企業の経常利益の推移を理解する。
 """
@@ -612,7 +612,7 @@ explanation = """
 """
 
 [[questions]]
-id = "chusho_shokibo_roudou_seisansei_chuochi_hikaku"
+id = "63c1d8da-4923-470d-b1b3-2ef082f7c8f1"
 description = """
 中小企業と小規模企業の労働生産性の中央値を大企業と比較する。
 """
@@ -624,7 +624,7 @@ explanation = """
 """
 
 [[questions]]
-id = "chusho_shokibo_joi10_roudou_seisansei_taikigyo_hikaku"
+id = "2562c6e7-3870-4d8b-9246-0e0fa26f0200"
 description = """
 中小企業と小規模企業の上位10%の労働生産性を大企業と比較する。
 """
@@ -636,7 +636,7 @@ explanation = """
 """
 
 [[questions]]
-id = "chusho_kigyo_kaigyo_ritsu_gyoshubetsu_kouijun"
+id = "30ef8a62-613a-48a6-8f9b-74f4563b873b"
 description = """
 2015年から2021年における製造業、卸売業、小売業、サービス業の開業率が高い順を理解する。
 """
@@ -648,7 +648,7 @@ explanation = """
 """
 
 [[questions]]
-id = "chusho_kigyo_haigyo_ritsu_gyoshubetsu_kouijun"
+id = "2ef4dd6a-3564-4741-9e09-39360ae043a2"
 description = """
 2015年から2021年における製造業、卸売業、小売業、サービス業の廃業率が高い順を理解する。
 """
@@ -660,7 +660,7 @@ explanation = """
 """
 
 [[questions]]
-id = "kyu_haigyo_kuroji_shokibo_chukibo_hikaku_2023"
+id = "deef8986-4040-4f7c-8c8b-bcc0af8a548e"
 description = """
 2023年に休廃業・解散した小規模企業と中規模企業の黒字企業の割合を比較する。
 """
@@ -672,7 +672,7 @@ explanation = """
 """
 
 [[questions]]
-id = "keieisha_heikin_nenrei_kyu_haigyo_shokibo_chukibo_2023"
+id = "4243a5cf-6e86-45b4-a06e-695e5458dfad"
 description = """
 2023年に休廃業・解散した小規模企業と中規模企業の経営者の平均年齢を比較する。
 """
@@ -684,7 +684,7 @@ explanation = """
 """
 
 [[questions]]
-id = "kokunai_tousan_ken_suii_2023"
+id = "5050fb42-04e3-4d73-bd4c-7d0db81ec18a"
 description = """
 2023年における国内の倒産件数の状況を理解する。
 """
@@ -696,7 +696,7 @@ explanation = """
 """
 
 [[questions]]
-id = "keieisha_heikin_nenrei_peak_2023"
+id = "a7b401fd-d103-4fb5-a34e-456dda2cdc1c"
 description = """
 2023年における経営者の平均年齢のピークを把握する。
 """
@@ -708,7 +708,7 @@ explanation = """
 """
 
 [[questions]]
-id = "70sai_ijo_keieisha_wariai_2023"
+id = "207c640f-2c37-48e0-be2e-5def83137de5"
 description = """
 2023年における経営者年齢が70歳以上である企業の割合の状況を理解する。
 """
@@ -720,7 +720,7 @@ explanation = """
 """
 
 [[questions]]
-id = "koukeisha_fuzai_kigyo_wariai_2023"
+id = "9333c510-3f73-4165-9bec-21b66f9a222a"
 description = """
 2023年における後継者が不在の企業の割合を理解する。
 """
@@ -732,7 +732,7 @@ explanation = """
 """
 
 [[questions]]
-id = "kokunai_kigyo_bukka_shisu_shohisha_bukka_shisu_2024"
+id = "05de95ad-627a-4d2f-abbc-617b2cfe2cc7"
 description = """
 2024年1月における国内企業物価指数と消費者物価指数の状況を理解する（2020年=100）。
 """
@@ -744,7 +744,7 @@ explanation = """
 """
 
 [[questions]]
-id = "en_yasu_chusho_kigyo_eikyo_2023"
+id = "37749a87-afbb-4161-8d5d-0ebcf7a846d2"
 description = """
 2023年11月～12月時点における円安の進行による中小企業の業績への影響を理解する。
 """
@@ -756,7 +756,7 @@ explanation = """
 """
 
 [[questions]]
-id = "cost_tenka_ritsu_2023"
+id = "c8173d96-e5d2-4d88-91c0-ecc1e7aae9e0"
 description = """
 2023年9月におけるコスト全体の価格転嫁率を理解する。
 """
@@ -768,7 +768,7 @@ explanation = """
 """
 
 [[questions]]
-id = "chusho_kigyo_setsubi_toshi_suii"
+id = "d8d380a1-5a33-4d6c-8c7e-39addc288ba4"
 description = """
 2012年からの日本の中小企業の設備投資額の推移を理解する。
 """
@@ -780,7 +780,7 @@ explanation = """
 """
 
 [[questions]]
-id = "bcp_sakutei_ritsu_daichusho"
+id = "2701f378-5dfa-48bf-a0b0-b4deaf87bc86"
 description = """
 大企業と中小企業における事業継続計画（BCP）の策定率を理解する。
 """
@@ -792,7 +792,7 @@ explanation = """
 """
 
 [[questions]]
-id = "digital_ka_torikumi_dankai_wariai_2023"
+id = "fa113754-eb66-4308-970a-f23cbc9bf074"
 description = """
 2023年における中小企業のデジタル化の取組状況の段階別割合を理解する。
 """
@@ -804,7 +804,7 @@ explanation = """
 """
 
 [[questions]]
-id = "chukigyo_shinsotsu_chuto_saiyo_hikaku"
+id = "e95c6310-6ba7-4a32-92c0-30cd524db816"
 description = """
 直近3年間における中小企業の新卒採用と中途採用の実施割合を比較する。
 """
@@ -816,7 +816,7 @@ explanation = """
 """
 
 [[questions]]
-id = "shoryoku_toshi_jisshi_wariai"
+id = "70998f05-53c2-4906-8f7a-a329e985b752"
 description = """
 直近5年間における人手不足対応を目的とした省力化投資の実施割合を理解する。
 """
@@ -828,7 +828,7 @@ explanation = """
 """
 
 [[questions]]
-id = "seicho_muketa_setsubi_toshi_jisshi_wariai"
+id = "ce004028-73b5-40e0-b593-ed8ad46083ae"
 description = """
 直近3年程度における成長に向けた設備投資の実施割合と実施割合が高い業種を理解する。
 """
@@ -840,7 +840,7 @@ explanation = """
 """
 
 [[questions]]
-id = "chusho_kigyo_kenkyu_kaihatsuhi_suii"
+id = "2069e0b1-05da-4f91-a14d-df729bc48b15"
 description = """
 中小企業の研究開発費と売上高比研究開発費の推移を理解する。
 """
@@ -852,7 +852,7 @@ explanation = """
 """
 
 [[questions]]
-id = "ma_ken_suii_2022"
+id = "eacb487e-e4d8-48d2-bf83-183a496373ed"
 description = """
 2022年におけるM&Aの件数を理解する。
 """
@@ -864,7 +864,7 @@ explanation = """
 """
 
 [[questions]]
-id = "jigyo_shokei_hikitsugi_senta_soudan_seiyaku_kensu_suii"
+id = "c20b0d37-98bb-4cbf-973e-74c1b1f47645"
 description = """
 事業承継・引継ぎ支援センターの相談件数と成約件数の推移と2022年度の件数を理解する。
 """
@@ -876,7 +876,7 @@ explanation = """
 """
 
 [[questions]]
-id = "ma_jisshi_kigyo_keiei_hyosho"
+id = "5a4ed346-27b9-45ca-b8e5-c1cc150b9ec9"
 description = """
 M&Aを実施した企業としていない企業の売上高、経常利益、労働生産性の比較を理解する。
 """
@@ -888,7 +888,7 @@ explanation = """
 """
 
 [[questions]]
-id = "saisei_shien_riyo_umu_suii"
+id = "95239f4a-e45f-484a-bd82-e09d13bb658e"
 description = """
 金融機関による再生支援の利用有無の直近3年程度と2015年時点の比較を理解する。
 """
@@ -900,7 +900,7 @@ explanation = """
 """
 
 [[questions]]
-id = "shokibo_jigyo_keiei_mondai_juyo_kadai"
+id = "c04ae1a9-fc23-4470-903f-1ff8b397a1d9"
 description = """
 小規模事業者の経営上の問題点と重要と考える経営課題を理解する。
 """
@@ -912,7 +912,7 @@ explanation = """
 """
 
 [[questions]]
-id = "shokibo_jigyo_uretaka_1000man_wariai"
+id = "f3c672fd-2216-491c-941e-de36eb394674"
 description = """
 小規模事業者の売上高1,000万円以下の割合を理解する。
 """
@@ -924,7 +924,7 @@ explanation = """
 """
 
 [[questions]]
-id = "son_eki_bunki_ten_hiritsu_kigyo_kibo_betsu"
+id = "3bf8ad2a-3005-4994-857d-9348c07592d8"
 description = """
 企業規模別の損益分岐点比率を理解する。
 """
@@ -936,7 +936,7 @@ explanation = """
 """
 
 [[questions]]
-id = "shokibo_jigyo_shikin_guri_kujou"
+id = "be23ac98-1567-4428-962c-43dbc4e7a352"
 description = """
 小規模事業者の資金繰りの苦しい状況の割合を理解する。
 """
@@ -948,7 +948,7 @@ explanation = """
 """
 
 [[questions]]
-id = "jinko_mitsudo_hikui_chiiki_shokibo_jigyo_wariai"
+id = "521c78c1-89b2-40ae-8139-6a2181f72189"
 description = """
 人口密度が低い地域における小規模事業所の割合を理解する。
 """
@@ -960,7 +960,7 @@ explanation = """
 """
 
 [[questions]]
-id = "kigyo_kibo_betsu_koyo_yoin"
+id = "2f8c506f-4ce3-4223-ab5d-0304a5ce346a"
 description = """
 企業規模別に60歳代以上の雇用者数と女性従業員数の割合が高い規模を理解する。
 """
@@ -972,7 +972,7 @@ explanation = """
 """
 
 [[questions]]
-id = "kigyo_kaigyo_kensu_suii"
+id = "3fb14cc4-2115-4b31-8518-8d78ca4319e7"
 description = """
 2022年の起業者数とその推移を理解する。
 """
@@ -984,7 +984,7 @@ explanation = """
 """
 
 [[questions]]
-id = "kaigyo_hiyo_chuochi_2023"
+id = "25d0ff87-6a93-4bee-9ee2-6a0dcdb4a2e1"
 description = """
 開業1年以内の企業における2023年度の開業費用の中央値を理解する。
 """
@@ -996,7 +996,7 @@ explanation = """
 """
 
 [[questions]]
-id = "kaigyo_sonzoku_kigyo_roudou_seisansei_hikaku"
+id = "f4fa094c-dde4-4d39-abb9-63ea5402702a"
 description = """
 開業企業と存続企業の労働生産性を比較する。
 """
@@ -1008,7 +1008,7 @@ explanation = """
 """
 
 [[questions]]
-id = "chihou_koukyou_dantai_sougyou_shien_mokuteki"
+id = "d6a6654f-5f15-4990-b618-23e6eddb26f2"
 description = """
 地方公共団体における創業支援の主な目的を理解する。
 """
@@ -1020,7 +1020,7 @@ explanation = """
 """
 
 [[questions]]
-id = "chihou_koukyou_dantai_sougyou_shien_renkei_saki"
+id = "b5f3c00a-0bce-4891-9589-dda1161309f4"
 description = """
 地方公共団体における創業支援の主な連携先を理解する。
 """
@@ -1032,7 +1032,7 @@ explanation = """
 """
 
 [[questions]]
-id = "shien_kikan_ryokusoku_taishou_jigyo_sha"
+id = "bc33c614-8bc7-4c57-9417-3eef7cb21f36"
 description = """
 各支援機関が最も力を入れている支援対象事業者の規模を理解する。
 """

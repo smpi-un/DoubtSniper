@@ -113,8 +113,24 @@ let parseCsvQuestions (csv: string) : QuestionDef list =
         )
     | [] -> []
 
+let loadQuestionsFromFilePath (path: string) : QuestionDef list =
+    let ext = Path.GetExtension(path).ToLower()
+    match ext with
+    | ".toml" -> parseTomlQuestions (File.ReadAllText(path))
+    | ".csv" -> parseCsvQuestions (File.ReadAllText(path))
+    | _ -> 
+        // 他の拡張子は無視
+        []
+
+let loadQuestionsFromBox (box: Box) : QuestionDef list =
+    box.Paths
+    |> List.collect (fun boxPath ->
+        Directory.GetFiles(boxPath, "*.toml", SearchOption.AllDirectories)
+        |> Seq.toList)
+    |> List.collect loadQuestionsFromFilePath
+
 /// 質問データを読み込む
-let loadQuestions (config: Config) =
+let loadQuestionsFromConfig (config: Config) =
     let boxPaths =
         config.Boxes
         |> List.collect (fun box -> box.Paths)

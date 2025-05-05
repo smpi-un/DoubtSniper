@@ -1,5 +1,5 @@
 [[questions]]
-id = "a1b2c3d4-e5f6-7890-abcd-1234567890ab"
+id = "6072e003-03fa-4545-b722-2ecb2edf323c"
 description = """
 金融緩和政策がLM曲線と経済に与える影響を理解する。
 """
@@ -11,7 +11,7 @@ explanation = """
 """
 
 [[questions]]
-id = "b2c3d4e5-f6a7-8901-bcde-2345678901bc"
+id = "0513ff60-6abf-4de5-a17c-646794f2fdc1"
 description = """
 政府支出の増加がIS曲線と経済に与える影響を理解する。
 """
@@ -23,7 +23,7 @@ explanation = """
 """
 
 [[questions]]
-id = "c3d4e5f6-a7b8-9012-cdef-3456789012cd"
+id = "a40764a9-dd6e-4558-b50d-3e8c2ef4ecf4"
 description = """
 マネタリーベースの定義を理解する。
 """
@@ -35,7 +35,7 @@ explanation = """
 """
 
 [[questions]]
-id = "d4e5f6a7-b8c9-0123-def0-4567890123de"
+id = "dbd769ae-aad8-4e99-ae7f-f974a8061765"
 description = """
 ハイパワードマネーの定義を理解する。
 """
@@ -47,7 +47,7 @@ explanation = """
 """
 
 [[questions]]
-id = "e5f6a7b8-c9d0-1234-ef01-5678901234ef"
+id = "48f49e19-1c4b-482d-94ce-9340bddfc3e6"
 description = """
 マネタリーベースの構成要素を理解する。
 """
@@ -59,7 +59,7 @@ explanation = """
 """
 
 [[questions]]
-id = "f6a7b8c9-d0e1-2345-f012-6789012345f0"
+id = "f1d9e0f5-ab98-46ab-b632-a32e5c0469fb"
 description = """
 日本銀行の買いオペレーションがマネタリーベースに与える影響を理解する。
 """
@@ -71,7 +71,7 @@ explanation = """
 """
 
 [[questions]]
-id = "a7b8c9d0-e1f2-3456-0123-7890123456a1"
+id = "f2257282-c91b-410e-81f0-f62f1be4f515"
 description = """
 日本銀行の外国為替市場介入がマネタリーベースに与える影響を理解する。
 """
@@ -83,7 +83,7 @@ explanation = """
 """
 
 [[questions]]
-id = ""
+id = "a720231d-f2c5-43d9-bf0d-cb1db2b8db7b"
 description = """
 """
 text = """
@@ -93,7 +93,7 @@ explanation = """
 取引動機による貨幣需要は主に所得や物価水準に依存し、利子率の影響は小さい。利子率が上昇しても取引動機による貨幣需要は通常増加しない
 """
 [[questions]]
-id = ""
+id = "97044c56-1396-4bbb-82d0-1e3ab616e7cd"
 description = """
 """
 text = """
@@ -104,7 +104,7 @@ explanation = """
 """
 
 [[questions]]
-id = ""
+id = "ddade3c0-4fcd-4990-b569-0312708d0c9e"
 description = """
 """
 text = """
@@ -115,7 +115,7 @@ explanation = """
 """
 
 [[questions]]
-id = ""
+id = "8522dbd4-9784-4e16-8dfe-525e634707e8"
 description = """
 """
 text = """

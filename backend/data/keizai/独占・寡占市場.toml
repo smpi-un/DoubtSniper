@@ -1,5 +1,5 @@
 [[questions]]
-id = ""
+id = "8c4c099c-8c7a-4676-8614-06575ac17ecf"
 description = """
 """
 text = """
@@ -8,7 +8,7 @@ text = """
 explanation = """
 """
 [[questions]]
-id = ""
+id = "aa3d75d4-9659-4f62-9335-8dd5deebaaa5"
 description = """
 """
 text = """
@@ -17,7 +17,7 @@ text = """
 explanation = """
 """
 [[questions]]
-id = ""
+id = "18b0ba39-5184-4e06-8cf0-1ce634c10b25"
 description = """
 """
 text = """
@@ -26,7 +26,7 @@ text = """
 explanation = """
 """
 [[questions]]
-id = ""
+id = "aef99df6-0700-4d45-8c4e-980c2dec84ec"
 description = """
 """
 text = """
@@ -36,7 +36,7 @@ explanation = """
 """
 
 [[questions]]
-id = "q1w2e3r4-t5y6-7890-abcd-1234567890a1"
+id = "7390c80d-4874-4329-aca0-8e211a1c98d1"
 description = """
 完全競争市場の特徴を理解する。
 """
@@ -48,7 +48,7 @@ explanation = """
 """
 
 [[questions]]
-id = "q1w2e3r4-t5y6-7890-abcd-1234567890a2"
+id = "6629cf5a-58c8-419f-a805-5a5812eaed94"
 description = """
 独占市場の特徴を理解する。
 """
@@ -60,7 +60,7 @@ explanation = """
 """
 
 [[questions]]
-id = "q1w2e3r4-t5y6-7890-abcd-1234567890a3"
+id = "189f88c5-e1b6-49dd-893b-6560857d634a"
 description = """
 自然独占市場の特徴を理解する。
 """
@@ -72,7 +72,7 @@ explanation = """
 """
 
 [[questions]]
-id = "q1w2e3r4-t5y6-7890-abcd-1234567890a4"
+id = "171c5d2b-eda6-48f4-9aa4-f1a8edc9c2ff"
 description = """
 寡占市場の特徴を理解する。
 """
@@ -84,7 +84,7 @@ explanation = """
 """
 
 [[questions]]
-id = "q1w2e3r4-t5y6-7890-abcd-1234567890a5"
+id = "3d143c01-39a9-4e55-a16f-6f9f22b47984"
 description = """
 独占的競争市場の特徴を理解する。
 """

@@ -34,6 +34,9 @@
         xorg.libXrandr # 画面解像度管理
 
         chromium # Chrome（FlutterのWebビルドやテスト用）
+
+        # Google Cloud
+        pkgs.google-cloud-sdk
       ];
       shellHook = ''
         echo "F# and elm environment is ready!"

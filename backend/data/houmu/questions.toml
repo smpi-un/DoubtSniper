@@ -1,6 +1,6 @@
 # 問題1: 会社設立に関する問題
 [[questions]]
-id = ""
+id = "0133e4e1-da07-4657-8f53-4ac9f805741d"
 name = "設立取締役の選任方法"
 category = "会社法"
 description = "発起設立と募集設立における取締役選任の決定方法を問う問題。"
@@ -10,7 +10,7 @@ text = """
 explanation = "発起設立では発起人が設立の主導権を持ち、議決権の過半数で迅速に決定されます。一方、募集設立では株主が関与するため、創立総会で決定されるのが一般的です。"
 
 [[questions]]
-id = ""
+id = "659b30f0-fa04-4da5-b5b4-d96194dea142"
 name = ""
 category = ""
 description = ""
@@ -20,7 +20,7 @@ text = """
 explanation = ""
 
 [[questions]]
-id = ""
+id = "4788feb6-5ed1-4740-94bc-014e9d3e1a6f"
 name = ""
 category = ""
 description = ""
@@ -30,7 +30,7 @@ text = """
 explanation = ""
 
 [[questions]]
-id = ""
+id = "d45a10a5-a726-477b-9379-8dade200c064"
 name = ""
 category = ""
 description = ""

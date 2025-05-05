@@ -1,5 +1,5 @@
 [[questions]]
-id = "a1b2c3d4-e5f6-7890-abcd-1234567890aa"
+id = "15f70b40-7489-44f4-b9a7-c6d8b42d8721"
 description = """
 平均費用の定義と総費用曲線との関係を理解する。
 """
@@ -11,7 +11,7 @@ explanation = """
 """
 
 [[questions]]
-id = "b2c3d4e5-f6a7-8901-bcde-2345678901bb"
+id = "25424a66-9851-41da-bfcc-53c33c7e2787"
 description = """
 限界費用の定義と総費用曲線との関係を理解する。
 """
@@ -23,7 +23,7 @@ explanation = """
 """
 
 [[questions]]
-id = "c3d4e5f6-a7b8-9012-cdef-3456789012cc"
+id = "f3897202-1665-4eee-80c5-088f0f007385"
 description = """
 外部不経済が私的限界費用と社会的限界費用に与える影響を理解する。
 """
@@ -35,7 +35,7 @@ explanation = """
 """
 
 [[questions]]
-id = "d4e5f6a7-b8c9-0123-def0-4567890123dd"
+id = "d430fc76-c14f-46fd-969e-af65d13c51cf"
 description = """
 外部不経済が社会的な総余剰に与える影響を理解する。
 """
@@ -47,7 +47,7 @@ explanation = """
 """
 
 [[questions]]
-id = "e5f6a7b8-c9d0-1234-ef01-5678901234ee"
+id = "1232d32e-c68c-4c93-824c-726a8c7f137d"
 description = """
 コースの定理が外部効果の解決に与える影響を理解する。
 """
@@ -59,7 +59,7 @@ explanation = """
 """
 
 [[questions]]
-id = "f6a7b8c9-d0e1-2345-f012-6789012345ff"
+id = "9e9ffcb1-a9c6-459a-b342-a08c44b20d58"
 description = """
 完全代替財と無差別曲線の形状を理解する。
 """
@@ -71,7 +71,7 @@ explanation = """
 """
 
 [[questions]]
-id = "a7b8c9d0-e1f2-3456-0123-7890123456gg"
+id = "58f25aa7-d5a5-4252-903c-9ac59b88fa66"
 description = """
 所得や価格の変化が需要曲線に与える影響を理解する。
 """
@@ -83,7 +83,7 @@ explanation = """
 """
 
 [[questions]]
-id = "b8c9d0e1-f2a3-4567-1234-8901234567hh"
+id = "9f8e39c0-4095-4173-8e63-4069494325ef"
 description = """
 技術進歩やコスト低下が供給曲線に与える影響を理解する。
 """
@@ -95,7 +95,7 @@ explanation = """
 """
 
 [[questions]]
-id = "c9d0e1f2-a3b4-5678-2345-9012345678ii"
+id = "182e5fa7-a09e-4287-b5fc-a31e4f4508bc"
 description = """
 買い手の減少が需要曲線に与える影響を理解する。
 """
@@ -107,7 +107,7 @@ explanation = """
 """
 
 [[questions]]
-id = "d0e1f2a3-b4c5-6789-3456-0123456789jj"
+id = "6704e3de-152a-4406-8bbf-fe57c2c248bc"
 description = """
 技術革新が供給曲線に与える影響を理解する。
 """
@@ -119,7 +119,7 @@ explanation = """
 """
 
 [[questions]]
-id = "e1f2a3b4-c5d6-7890-4567-1234567890kk"
+id = "37b6171e-5f1f-4594-b64a-590f2345751f"
 description = """
 ケインズの有効需要の原理における貯蓄意欲の影響を理解する。
 """
@@ -131,7 +131,7 @@ explanation = """
 """
 
 [[questions]]
-id = "f2a3b4c5-d6e7-8901-5678-2345678901ll"
+id = "b9886f97-9df2-486a-a602-36fce9be051d"
 description = """
 恒常所得仮説における一時的所得の影響を理解する。
 """
@@ -143,7 +143,7 @@ explanation = """
 """
 
 [[questions]]
-id = "a3b4c5d6-e7f8-9012-6789-3456789012mm"
+id = "9aba4827-85f3-4b8b-b0b8-1e8da8e23904"
 description = """
 絶対所得仮説における減税の影響を理解する。
 """
@@ -155,7 +155,7 @@ explanation = """
 """
 
 [[questions]]
-id = "b4c5d6e7-f8a9-0123-7890-4567890123nn"
+id = "df28819a-0d53-421b-bc4d-1af5057e39ca"
 description = """
 絶対所得仮説における恒久的所得増加の影響を理解する。
 """
@@ -167,7 +167,7 @@ explanation = """
 """
 
 [[questions]]
-id = "c5d6e7f8-a9b0-1234-8901-5678901234oo"
+id = "b06ed3ed-a77c-42f0-9f38-fde803a646f0"
 description = """
 ライフサイクル仮説における所得増加の影響を理解する。
 """
@@ -179,7 +179,7 @@ explanation = """
 """
 
 [[questions]]
-id = "d6e7f8a9-b0c1-2345-9012-6789012345pp"
+id = "3f235641-5bbd-4fff-b527-dc65c1b0370a"
 description = """
 景気動向指数における経済指標の分類を理解する。
 """
@@ -191,7 +191,7 @@ explanation = """
 """
 
 [[questions]]
-id = "e7f8a9b0-c1d2-3456-0123-7890123456qq"
+id = "c28a3b47-050f-4664-9f44-b935eaa39904"
 description = """
 景気動向指数におけるマネーストックと失業率の分類を理解する。
 """
@@ -203,7 +203,7 @@ explanation = """
 """
 
 [[questions]]
-id = "f8a9b0c1-d2e3-4567-1234-8901234567rr"
+id = "4bd46008-e4ba-4af7-962f-a6970f5571a3"
 description = """
 景気動向指数における先行指数の数を理解する。
 """
@@ -220,7 +220,7 @@ explanation = """
 """
 
 [[questions]]
-id = "a9b0c1d2-e3f4-5678-2345-9012345678ss"
+id = "76f676d0-6ce4-4588-a733-b627c909dace"
 description = """
 景気動向指数の一致指数と景気局面の関係を理解する。
 """
@@ -232,7 +232,7 @@ CI一致指数は現在の景気状況を反映する。指数が上昇してい
 """
 
 [[questions]]
-id = "b1c2d3e4-f5a6-7890-abcd-1234567890tt"
+id = "3e067b40-058f-4da5-aa8d-9681f968741d"
 description = """
 内閣府の景気動向指数における鉱工業生産指数の分類を理解する。
 """
@@ -244,7 +244,7 @@ explanation = """
 """
 
 [[questions]]
-id = "c2d3e4f5-a6b7-8901-bcde-2345678901uu"
+id = "9c3823db-c000-48d9-90ea-6cd81bd87f65"
 description = """
 内閣府の景気動向指数における実質機械受注の分類を理解する。
 """
@@ -256,7 +256,7 @@ explanation = """
 """
 
 [[questions]]
-id = "d3e4f5a6-b7c8-9012-cdef-3456789012vv"
+id = "49a7828a-59e5-4282-b06e-2a2a3db3694a"
 description = """
 内閣府の景気動向指数における中小企業売上高の分類を理解する。
 """
@@ -268,7 +268,7 @@ explanation = """
 """
 
 [[questions]]
-id = "e4f5a6b7-c8d9-0123-def0-4567890123ww"
+id = "1cac5708-7cef-426b-ac43-06e0d4918356"
 description = """
 内閣府の景気動向指数における消費者態度指数の分類を理解する。
 """
@@ -280,7 +280,7 @@ explanation = """
 """
 
 [[questions]]
-id = "f5a6b7c8-d9e0-1234-ef01-5678901234xx"
+id = "3e0a740b-f772-4241-96a5-a313cacdebdb"
 description = """
 内閣府の景気動向指数における複数の指標の分類を理解する。
 """
