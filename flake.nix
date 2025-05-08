@@ -12,9 +12,9 @@
   in {
     devShells.${system}.default = pkgs.mkShell {
       packages = with pkgs; [
-        dotnet-sdk
+        # dotnet-sdk
         dotnet-sdk_10
-        dotnet-sdk_8
+        # dotnet-sdk_8
         # elmPackages.elm
 
         flutter # Flutter SDK
@@ -39,7 +39,7 @@
         # Google Cloud
         google-cloud-sdk
         firebase-tools
-        azure-functions-core-tools
+        # azure-functions-core-tools
       ];
       shellHook = ''
         echo "F# and elm environment is ready!"
