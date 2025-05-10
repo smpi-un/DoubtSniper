@@ -87,6 +87,8 @@ class _QuizPageState extends State<QuizPage> {
   bool? _isCorrect; // 回答が正解だったか
   String? _correctAnswer; // 正しい解答
   String? _explanation; // 解説
+  // String serverUrl = 'http://localhost:5067'; // サーバーのURL
+  String serverUrl = 'https://doubt-sniper-backend-404704694046.asia-northeast1.run.app'; // サーバーのURL
 
   @override
   void initState() {
@@ -104,7 +106,7 @@ class _QuizPageState extends State<QuizPage> {
     });
 
     try {
-      final response = await http.get(Uri.parse('http://localhost:5067/exam'));
+      final response = await http.get(Uri.parse('$serverUrl/exam'));
 
       if (response.statusCode == 200) {
         final questionData = jsonDecode(response.body);
@@ -138,7 +140,7 @@ class _QuizPageState extends State<QuizPage> {
 
     try {
       final response = await http.post(
-        Uri.parse('http://localhost:5067/answer'),
+        Uri.parse('$serverUrl/answer'),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({
           'questionId': questionId,

@@ -34,7 +34,7 @@ let main argv =
     let config = readConfig "config.toml"
 
     let configureWebApp (questions: QuestionDef list) =
-        let builder = WebApplication.CreateBuilder()
+        let builder = WebApplication.CreateBuilder(argv)
         let app = builder.Build()
         
         // Configure CORS

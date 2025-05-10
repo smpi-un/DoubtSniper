@@ -6,16 +6,16 @@ WORKDIR /app
 
 # プロジェクトファイル (.fsproj) をコピーして依存関係を復元
 # backend/src に .fsproj があると仮定
-COPY backend/src/*.fsproj ./backend/src/
-RUN dotnet restore backend/src/*.fsproj
+COPY *.fsproj ./
+RUN dotnet restore *.fsproj
 
 # ソースコード全体をコピー
 COPY . .
 
 # アプリケーションをビルドして発行 (リリースモード、自己完結型ではない)
 # backend/src/YourApp.fsproj がメインのプロジェクトファイルだと仮定
-WORKDIR /app/backend/src
-RUN dotnet publish -c Release -o /app/publish --no-self-contained
+WORKDIR /app
+RUN dotnet publish -c Release -o /app/publish --no-self-contained ./fsharp.fsproj
 
 # --- 実行ステージ ---
 # ASP.NET Core ランタイムイメージをベースにする (より軽量)
@@ -24,6 +24,9 @@ WORKDIR /app
 
 # ビルドステージから発行されたファイルのみをコピー
 COPY --from=build /app/publish .
+COPY config.toml /app/config.toml
+COPY data /app/data
+
 
 # アプリケーションがリッスンするポート (Cloud Run は PORT 環境変数で指定されたポートを使う)
 # デフォルトは 8080 だが、ASP.NET Core は通常 80 または 443 をリッスンしようとする
@@ -34,4 +37,4 @@ EXPOSE 8080
 
 # コンテナ起動時に実行されるコマンド
 # backend/src/YourApp.dll のように、発行された DLL ファイル名を指定
-ENTRYPOINT ["dotnet", "YourApp.dll"]
+ENTRYPOINT ["dotnet", "fsharp.dll", "--server"]

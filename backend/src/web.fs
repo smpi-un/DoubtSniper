@@ -148,6 +148,13 @@ let handleExamRequest (questions: QuestionDef list) (context: HttpContext): Task
 /// Webアプリケーションを構成し、実行する
 let configureAndRunWebApp (questions: QuestionDef list) (args: string array) =
     let builder = WebApplication.CreateBuilder(args)
+    
+    // Cloud Run の PORT 環境変数を読み取り、そのポートでリッスンするように設定
+    let port =
+        match Environment.GetEnvironmentVariable("PORT") with
+        | null | "" -> "8080" // PORT 環境変数が設定されていないか空の場合はデフォルトで 8080 を使用
+        | s -> s
+    builder.WebHost.UseUrls($"http://*:{port}") |> ignore
 
     // CORS (Cross-Origin Resource Sharing) サービスを追加
     // これにより、異なるオリジン (ドメイン、ポート) からのWebフロントエンドからのリクエストを許可
