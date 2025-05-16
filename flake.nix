@@ -12,9 +12,9 @@
   in {
     devShells.${system}.default = pkgs.mkShell {
       packages = with pkgs; [
-        # dotnet-sdk
-        dotnet-sdk_10
-        # dotnet-sdk_8
+        dotnet-sdk
+        # dotnet-sdk_10
+        dotnet-sdk_8
         # elmPackages.elm
 
         flutter # Flutter SDK

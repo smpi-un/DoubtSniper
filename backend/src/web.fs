@@ -13,6 +13,13 @@ open Config
 open Question
 open Common
 
+open Firebase.Database
+open System.Text
+open System.Text.Json
+open System.Threading.Tasks
+open FirebaseConfig // FirebaseConfig モジュールをインポート
+open System.Net
+
 [<AutoOpen>]
 module StringExtnsions =
     module String =
@@ -45,6 +52,39 @@ type AnswerResponse = {
 /// <returns>The question with the specified ID, or None if not found.</returns>
 let getQuestionById (id: string) (questions: QuestionDef list): QuestionDef option =
     questions |> List.tryFind (fun q -> q.id = id)
+
+// Firebaseにデータを保存する関数
+let saveAnswerToFirebase (answerRequest: AnswerRequest) (isCorrect: bool) =
+    task {
+        try
+            // Firebaseの設定情報を読み込む
+            let firebaseConfig = FirebaseConfig.readFirebaseConfig "backend/firebase_config.toml"
+
+            // Firebase Realtime Databaseに接続
+            let firebaseClient = new FirebaseClient(firebaseConfig |> getFirestoreUrl)
+
+            // 保存するデータを作成
+            let data =
+                {|
+                    userId = "dummy_user_id" // TODO: ユーザーIDを実装
+                    questionId = answerRequest.questionId
+                    questionText = answerRequest.questionText
+                    isCorrect = isCorrect
+                    timestamp = DateTime.UtcNow
+                    deviceInfo = "dummy_device_info" // TODO: デバイス情報を実装
+                |}
+
+            // データをJSONにシリアライズ
+            let jsonData = JsonSerializer.Serialize(data)
+
+            // データをFirebaseに保存
+            let path = $"answers/{Guid.NewGuid()}"
+            do! firebaseClient.Child(path).PutAsync(jsonData) |> Async.AwaitTask
+        with
+        | ex ->
+            printfn "Error saving to Firebase: %s" ex.Message
+            return ()
+    }
 
 // 回答リクエストを処理する関数
 let handleAnswerRequest (questions: QuestionDef list) (context: HttpContext): Task =
@@ -99,6 +139,9 @@ let handleAnswerRequest (questions: QuestionDef list) (context: HttpContext): Ta
                 context.Response.StatusCode <- StatusCodes.Status200OK
                 // レスポンスをJSON形式で非同期に書き込み
                 do! context.Response.WriteAsJsonAsync(answerResponse)
+
+                // Firebaseにデータを保存
+                do! saveAnswerToFirebase answerRequest isFinalCorrect |> Async.AwaitTask
 
             | None ->
                 // 該当する質問が見つからない場合

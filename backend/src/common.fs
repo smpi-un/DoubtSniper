@@ -1,5 +1,4 @@
 module Common
-
 open System
 type GameType =
     | SelectDoubt
