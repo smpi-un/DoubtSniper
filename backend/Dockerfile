@@ -25,6 +25,7 @@ WORKDIR /app
 # ビルドステージから発行されたファイルのみをコピー
 COPY --from=build /app/publish .
 COPY config.toml /app/config.toml
+COPY firebase_config.toml /app/firebase_config.toml
 COPY data /app/data
 
 

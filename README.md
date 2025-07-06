@@ -15,6 +15,7 @@ flutter run -d web-server --web-port=8080
 ## Deploy
 
 ```sh
+flutter build web --dart-define=API_URL=https://doubt-sniper-backend-404704694046.asia-northeast1.run.app
 firebase deploy --only hosting
 ```
 
