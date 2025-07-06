@@ -58,10 +58,10 @@ let saveAnswerToFirebase (answerRequest: AnswerRequest) (isCorrect: bool) =
     task {
         try
             // Firebaseの設定情報を読み込む
-            let firebaseConfig = FirebaseConfig.readFirebaseConfig "backend/firebase_config.toml"
+            let firebaseConfig = FirebaseConfig.readFirebaseConfig "firebase_config.toml"
 
             // Firebase Realtime Databaseに接続
-            let firebaseClient = new FirebaseClient(firebaseConfig |> getFirestoreUrl)
+            let firebaseClient = new FirebaseClient(firebaseConfig |> getRealtimeDatabaseUrl)
 
             // 保存するデータを作成
             let data =
@@ -76,10 +76,13 @@ let saveAnswerToFirebase (answerRequest: AnswerRequest) (isCorrect: bool) =
 
             // データをJSONにシリアライズ
             let jsonData = JsonSerializer.Serialize(data)
+            printfn "[DEBUG] Serialized jsonData for Firebase: %s" jsonData
 
             // データをFirebaseに保存
             let path = $"answers/{Guid.NewGuid()}"
+            printfn "[DEBUG] Saving to Firebase path: %s" path
             do! firebaseClient.Child(path).PutAsync(jsonData) |> Async.AwaitTask
+            printfn "[DEBUG] Successfully saved to Firebase."
         with
         | ex ->
             printfn "Error saving to Firebase: %s" ex.Message
@@ -141,6 +144,7 @@ let handleAnswerRequest (questions: QuestionDef list) (context: HttpContext): Ta
                 do! context.Response.WriteAsJsonAsync(answerResponse)
 
                 // Firebaseにデータを保存
+                printfn "[DEBUG] Calling saveAnswerToFirebase with isFinalCorrect: %b and answerRequest: %A" isFinalCorrect answerRequest
                 do! saveAnswerToFirebase answerRequest isFinalCorrect |> Async.AwaitTask
 
             | None ->
@@ -192,13 +196,6 @@ let handleExamRequest (questions: QuestionDef list) (context: HttpContext): Task
 let configureAndRunWebApp (questions: QuestionDef list) (args: string array) =
     let builder = WebApplication.CreateBuilder(args)
     
-    // Cloud Run の PORT 環境変数を読み取り、そのポートでリッスンするように設定
-    let port =
-        match Environment.GetEnvironmentVariable("PORT") with
-        | null | "" -> "8080" // PORT 環境変数が設定されていないか空の場合はデフォルトで 8080 を使用
-        | s -> s
-    builder.WebHost.UseUrls($"http://*:{port}") |> ignore
-
     // CORS (Cross-Origin Resource Sharing) サービスを追加
     // これにより、異なるオリジン (ドメイン、ポート) からのWebフロントエンドからのリクエストを許可
     builder.Services.AddCors(fun options ->

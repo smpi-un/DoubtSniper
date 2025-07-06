@@ -20,6 +20,8 @@ firebase deploy --only hosting
 
 
 # backend
+## Run Local
+dotnet run -- --server
 
 ## Deploy
 

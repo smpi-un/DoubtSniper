@@ -87,8 +87,8 @@ class _QuizPageState extends State<QuizPage> {
   bool? _isCorrect; // 回答が正解だったか
   String? _correctAnswer; // 正しい解答
   String? _explanation; // 解説
-  // String serverUrl = 'http://localhost:5067'; // サーバーのURL
-  String serverUrl = 'https://doubt-sniper-backend-404704694046.asia-northeast1.run.app'; // サーバーのURL
+  String serverUrl = 'http://localhost:5067'; // サーバーのURL
+  // String serverUrl = 'https://doubt-sniper-backend-404704694046.asia-northeast1.run.app'; // サーバーのURL
 
   @override
   void initState() {
